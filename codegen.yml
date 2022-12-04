@@ -1,0 +1,23 @@
+schema: https://docs.github.com/public/schema.docs.graphql
+# file mask for graphql query files
+documents: ./**/*.graphql
+generates:
+  ./src/generated/graphql.sdk.ts: # output typescript file path
+    plugins:
+      - typescript
+      # for SDK generation
+      - typescript-operations
+      - typescript-graphql-request
+      # for eslint ignore
+      - add:
+          content: '/* eslint-disable */'
+config:
+  # omits __typename fields from all models
+  skipTypename: true
+  # custom GraphQL Scalars to TypeScript types map
+  scalars:
+    String: string
+    Date: string
+    ObjectID: string
+    timestamptz: string
+    uuid: string

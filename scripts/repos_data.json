@@ -1,0 +1,9 @@
+{
+  "query": "query getRepos($organization:String!, $pageSize: Int, $after: String) { organization(login:$organization){ repositories (after:$after, first: $pageSize, orderBy: {field: STARGAZERS, direction: DESC}){ totalCount pageInfo { startCursor hasNextPage endCursor } edges { cursor node { repositoryName:name id url descriptionHTML updatedAt stargazers { totalCount } forks { totalCount } issues(states:[OPEN]) { totalCount } pullRequests(states:[OPEN]) { totalCount } } } } } }",
+  "variables": {
+    "organization": "Azure-Samples",
+    "after": null,
+    "pageSize": 100
+  },
+  "operationName": "getRepos"
+}
