@@ -33,7 +33,6 @@ async function run(): Promise<void> {
     switch (querytype) {
       case 'whoami':
         data = await gitHubGraphQLWhoAmI(sdk, pat)
-        console.log(data)
         core.setOutput('data', JSON.stringify(data))
         return
       case 'org_repos':
@@ -41,7 +40,6 @@ async function run(): Promise<void> {
           throw new Error('Org name is required')
         }
         data = await gitHubGraphQLOrgReposAg(sdk, pat, orgName)
-        console.log(data)
         core.setOutput('data', JSON.stringify(data))
         return
       default:
