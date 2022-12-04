@@ -2624,7 +2624,6 @@ function run() {
             switch (querytype) {
                 case 'whoami':
                     data = yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat);
-                    console.log(data);
                     core.setOutput('data', JSON.stringify(data));
                     return;
                 case 'org_repos':
@@ -2632,7 +2631,6 @@ function run() {
                         throw new Error('Org name is required');
                     }
                     data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName);
-                    console.log(data);
                     core.setOutput('data', JSON.stringify(data));
                     return;
                 default:
