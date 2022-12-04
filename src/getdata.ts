@@ -16,7 +16,7 @@ export async function gitHubGraphQLWhoAmI(
     Authorization: `Bearer ${personal_access_token}`
   }
   const data = await sdk.WhoAmI(variables, requestHeaders)
-  return data.viewer.login
+  return data
 }
 
 export async function gitHubGraphQLOrgReposAg(

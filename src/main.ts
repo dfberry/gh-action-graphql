@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */ // --> OFF
 import * as core from '@actions/core'
 import { getSdk, Sdk } from './generated/graphql.sdk'
 import { GITHUB_GRAPHQL } from './constants'
@@ -13,7 +14,6 @@ function getVarsFromAction(): Record<string, string> {
     orgName: core.getInput('github_org') || GITHUB_GRAPHQL,
     querytype: core.getInput('query_type') || 'whoami'
   }
-  // eslint-disable-next-line no-console
   console.log(variables)
   return variables
 }
@@ -25,23 +25,24 @@ async function run(): Promise<void> {
       throw new Error('GitHub Personal Access Token is required')
     }
 
-    
     const sdk: Sdk = getSdk(new GraphQLClient(GITHUB_GRAPHQL))
+    console.log(`Ready to query`)
+
+    let data = undefined
+
     switch (querytype) {
       case 'whoami':
-        core.setOutput(
-          'data',
-          JSON.stringify(await gitHubGraphQLWhoAmI(sdk, pat))
-        )
+        data = await gitHubGraphQLWhoAmI(sdk, pat)
+        console.log(data)
+        core.setOutput('data', JSON.stringify(data))
         return
       case 'org_repos':
         if (!orgName) {
           throw new Error('Org name is required')
         }
-        core.setOutput(
-          'data',
-          JSON.stringify(await gitHubGraphQLOrgReposAg(sdk, pat, orgName))
-        )
+        data = await gitHubGraphQLOrgReposAg(sdk, pat, orgName)
+        console.log(data)
+        core.setOutput('data', JSON.stringify(data))
         return
       default:
         throw new Error("Can't determine query type")

@@ -35,6 +35,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint no-console: 0 */ // --> OFF
 const core = __importStar(require("@actions/core"));
 const graphql_sdk_1 = require("./generated/graphql.sdk");
 const constants_1 = require("./constants");
@@ -48,7 +49,6 @@ function getVarsFromAction() {
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
         querytype: core.getInput('query_type') || 'whoami'
     };
-    // eslint-disable-next-line no-console
     console.log(variables);
     return variables;
 }
@@ -60,15 +60,21 @@ function run() {
                 throw new Error('GitHub Personal Access Token is required');
             }
             const sdk = (0, graphql_sdk_1.getSdk)(new graphql_request_1.GraphQLClient(constants_1.GITHUB_GRAPHQL));
+            console.log(`Ready to query`);
+            let data = undefined;
             switch (querytype) {
                 case 'whoami':
-                    core.setOutput('data', JSON.stringify(yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat)));
+                    data = yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat);
+                    console.log(data);
+                    core.setOutput('data', JSON.stringify(data));
                     return;
                 case 'org_repos':
                     if (!orgName) {
                         throw new Error('Org name is required');
                     }
-                    core.setOutput('data', JSON.stringify(yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName)));
+                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName);
+                    console.log(data);
+                    core.setOutput('data', JSON.stringify(data));
                     return;
                 default:
                     throw new Error("Can't determine query type");
