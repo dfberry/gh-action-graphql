@@ -37,6 +37,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint no-console: 0 */ // --> OFF
 const core = __importStar(require("@actions/core"));
+const fs_1 = require("fs");
+const path_1 = __importDefault(require("path"));
 const graphql_sdk_1 = require("./generated/graphql.sdk");
 const constants_1 = require("./constants");
 const graphql_request_1 = require("graphql-request");
@@ -47,7 +49,9 @@ function getVarsFromAction() {
     const variables = {
         pat: core.getInput('github_personal_access_token'),
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
-        querytype: core.getInput('query_type') || 'whoami'
+        querytype: core.getInput('query_type') || 'whoami',
+        save_to_file: core.getInput('save_to_file') || 'true',
+        save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME
     };
     console.log(variables);
     return variables;
@@ -55,7 +59,7 @@ function getVarsFromAction() {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { pat, orgName, querytype } = getVarsFromAction();
+            const { pat, orgName, querytype, save_to_file, save_to_file_name } = getVarsFromAction();
             if (!pat) {
                 throw new Error('GitHub Personal Access Token is required');
             }
@@ -66,16 +70,22 @@ function run() {
                 case 'whoami':
                     data = yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat);
                     core.setOutput('data', JSON.stringify(data));
-                    return;
+                    break;
                 case 'org_repos':
                     if (!orgName) {
                         throw new Error('Org name is required');
                     }
                     data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName);
                     core.setOutput('data', JSON.stringify(data));
-                    return;
+                    break;
                 default:
                     throw new Error("Can't determine query type");
+            }
+            // save data to file instead of blowing out GitHub Action memory
+            if (save_to_file === 'true' && save_to_file_name) {
+                const dirFile = path_1.default.join(__dirname, '..', save_to_file_name);
+                yield fs_1.promises.writeFile(dirFile, JSON.stringify(data), 'utf8');
+                console.log(`Data output file written to ${dirFile}`);
             }
         }
         catch (error) {

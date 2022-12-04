@@ -7,8 +7,11 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.GITHUB_GRAPHQL = void 0;
+exports.TIME_20_SECONDS = exports.TIME_30_SECONDS = exports.DEFAULT_SAVED_FILE_NAME = exports.GITHUB_GRAPHQL = void 0;
 exports.GITHUB_GRAPHQL = 'https://api.github.com/graphql';
+exports.DEFAULT_SAVED_FILE_NAME = 'graphql_data.json';
+exports.TIME_30_SECONDS = 30000;
+exports.TIME_20_SECONDS = 20000;
 
 
 /***/ }),
@@ -2482,7 +2485,7 @@ exports.getSdk = getSdk;
 /***/ }),
 
 /***/ 8962:
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
 
 "use strict";
 
@@ -2497,6 +2500,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.gitHubGraphQLOrgReposAg = exports.gitHubGraphQLWhoAmI = void 0;
+const constants_1 = __nccwpck_require__(1912);
+const utils_1 = __nccwpck_require__(4729);
 function gitHubGraphQLWhoAmI(sdk, personal_access_token) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!personal_access_token)
@@ -2528,6 +2533,8 @@ function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name) {
         let hasNextPage = true;
         const repos = [];
         do {
+            // rate limit - TBD: Fix this
+            yield (0, utils_1.waitfor)(constants_1.TIME_30_SECONDS);
             const data = yield sdk.OrgReposAg(variables, requestHeaders);
             // Get repos
             if ((_b = (_a = data === null || data === void 0 ? void 0 : data.organization) === null || _a === void 0 ? void 0 : _a.repositories) === null || _b === void 0 ? void 0 : _b.edges) {
@@ -2596,6 +2603,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 /* eslint no-console: 0 */ // --> OFF
 const core = __importStar(__nccwpck_require__(2186));
+const fs_1 = __nccwpck_require__(5747);
+const path_1 = __importDefault(__nccwpck_require__(5622));
 const graphql_sdk_1 = __nccwpck_require__(7103);
 const constants_1 = __nccwpck_require__(1912);
 const graphql_request_1 = __nccwpck_require__(2476);
@@ -2606,7 +2615,9 @@ function getVarsFromAction() {
     const variables = {
         pat: core.getInput('github_personal_access_token'),
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
-        querytype: core.getInput('query_type') || 'whoami'
+        querytype: core.getInput('query_type') || 'whoami',
+        save_to_file: core.getInput('save_to_file') || 'true',
+        save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME
     };
     console.log(variables);
     return variables;
@@ -2614,7 +2625,7 @@ function getVarsFromAction() {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { pat, orgName, querytype } = getVarsFromAction();
+            const { pat, orgName, querytype, save_to_file, save_to_file_name } = getVarsFromAction();
             if (!pat) {
                 throw new Error('GitHub Personal Access Token is required');
             }
@@ -2625,16 +2636,22 @@ function run() {
                 case 'whoami':
                     data = yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat);
                     core.setOutput('data', JSON.stringify(data));
-                    return;
+                    break;
                 case 'org_repos':
                     if (!orgName) {
                         throw new Error('Org name is required');
                     }
                     data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName);
                     core.setOutput('data', JSON.stringify(data));
-                    return;
+                    break;
                 default:
                     throw new Error("Can't determine query type");
+            }
+            // save data to file instead of blowing out GitHub Action memory
+            if (save_to_file === 'true' && save_to_file_name) {
+                const dirFile = path_1.default.join(__dirname, '..', save_to_file_name);
+                yield fs_1.promises.writeFile(dirFile, JSON.stringify(data), 'utf8');
+                console.log(`Data output file written to ${dirFile}`);
             }
         }
         catch (error) {
@@ -2645,6 +2662,32 @@ function run() {
     });
 }
 run();
+
+
+/***/ }),
+
+/***/ 4729:
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.waitfor = void 0;
+function waitfor(ms) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    });
+}
+exports.waitfor = waitfor;
 
 
 /***/ }),

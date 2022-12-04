@@ -18,6 +18,14 @@ Query selected to run. Default is `whoami`. Other options include:
 
 The name of the org used by `github_org` query. Default is `Azure-Samples`.
 
+### `save_to_file` 
+
+Save output to file instead of output data to save runtime memory. Defaults to true.
+
+### `save_to_file_name`
+
+Output file name in root. Default is `graphql_data.json`.
+
 ## Outputs
 
 ### `data`

@@ -3,7 +3,8 @@ import {
   OrgReposAgQueryVariables,
   Sdk
 } from './generated/graphql.sdk'
-
+import { TIME_30_SECONDS } from './constants'
+import { waitfor } from './utils'
 export async function gitHubGraphQLWhoAmI(
   sdk: Sdk,
   personal_access_token: string
@@ -40,6 +41,8 @@ export async function gitHubGraphQLOrgReposAg(
   const repos: RepoInfoAgFragment[] = []
 
   do {
+    // rate limit - TBD: Fix this
+    await waitfor(TIME_30_SECONDS)
     const data = await sdk.OrgReposAg(variables, requestHeaders)
 
     // Get repos

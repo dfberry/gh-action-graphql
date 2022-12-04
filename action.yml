@@ -14,6 +14,14 @@ inputs:
     required: false
     description: 'input GitHub org - PAT must have permission to org'
     default: 'Azure-Samples'
+  save_to_file: 
+    required: false
+    description: 'Save output to file instead of output data to save runtime memory.'
+    default: 'true'    
+  save_to_file_name: 
+    required: false
+    description: 'Output file name. Default is graphql_data.json'
+    default: 'graphql_data.json'   
 runs:
   using: 'node16'
   main: 'package/index.js'
