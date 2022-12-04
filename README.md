@@ -1,106 +1,40 @@
-<p align="center">
-  <a href="https://github.com/actions/typescript-action/actions"><img alt="typescript-action status" src="https://github.com/actions/typescript-action/workflows/build-test/badge.svg"></a>
-</p>
+# GraphQL Data Scrape action
 
-# Create a JavaScript Action using TypeScript
+Get GraphQL data in action. 
 
-Use this template to bootstrap the creation of a TypeScript action.:rocket:
+## Inputs
 
-This template includes compilation support, tests, a validation workflow, publishing, and versioning guidance.  
+### `github_personal_access_token`
 
-If you are new, there's also a simpler introduction.  See the [Hello World JavaScript Action](https://github.com/actions/hello-world-javascript-action)
+**Required** Your GitHub personal access token. It should be configured to query or mutate your data based on your query. Use the `classic` personal access token because the newer version doesn't work with the GraphQL endpoint.
 
-## Create an action from this template
+### `query_type`
 
-Click the `Use this Template` and provide the new repo details for your action
+Query selected to run. Default is `whoami`. Other options include:
 
-## Code in Main
+* `org_repos`: Defaults to `Azure-Samples` org. Use `github_org` input to set a different org.
 
-> First, you'll need to have a reasonably modern version of `node` handy. This won't work with versions older than 9, for instance.
+### `github_org`
 
-Install the dependencies  
-```bash
-$ npm install
-```
+The name of the org used by `github_org` query. Default is `Azure-Samples`.
 
-Build the typescript and package it for distribution
-```bash
-$ npm run build && npm run package
-```
+## Outputs
 
-Run the tests :heavy_check_mark:  
-```bash
-$ npm test
+### `data`
 
- PASS  ./index.test.js
-  ✓ throws invalid number (3ms)
-  ✓ wait 500 ms (504ms)
-  ✓ test runs (95ms)
+Query or mutuation information is returned in the `data` output.
 
-...
-```
+## Example usage
 
-## Change action.yml
-
-The action.yml defines the inputs and output for your action.
-
-Update the action.yml with your name, description, inputs and outputs for your action.
-
-See the [documentation](https://help.github.com/en/articles/metadata-syntax-for-github-actions)
-
-## Change the Code
-
-Most toolkit and CI/CD operations involve async operations so the action is run in an async function.
-
-```javascript
-import * as core from '@actions/core';
-...
-
-async function run() {
-  try { 
-      ...
-  } 
-  catch (error) {
-    core.setFailed(error.message);
-  }
-}
-
-run()
-```
-
-See the [toolkit documentation](https://github.com/actions/toolkit/blob/master/README.md#packages) for the various packages.
-
-## Publish to a distribution branch
-
-Actions are run from GitHub repos so we will checkin the packed dist folder. 
-
-Then run [ncc](https://github.com/zeit/ncc) and push the results:
-```bash
-$ npm run package
-$ git add package
-$ git commit -a -m "prod dependencies"
-$ git tag -a -m "prod release" v1.0
-$ git push --follow-tags
-```
-
-Note: We recommend using the `--license` option for ncc, which will create a license file for all of the production node modules used in your project.
-
-Your action is now published! :rocket: 
-
-See the [versioning documentation](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md)
-
-## Validate
-
-You can now validate the action by referencing `./` in a workflow in your repo (see [test.yml](.github/workflows/test.yml))
+Get name of user associated with personal access token
 
 ```yaml
-uses: ./
-with:
-  milliseconds: 1000
+- name: Who Am I
+  id: whoami
+  uses: dfberry/gh-action-graphql@v1.0
+  with:
+    github_personal_access_token: ${{ secrets.PAT }}
+# Use the output from the `hello` step
+- name: Get the data
+  run: echo "The output was ${{ steps.whoami.data }}"
 ```
-
-See the [actions tab](https://github.com/actions/typescript-action/actions) for runs of this action! :rocket:
-
-## Usage:
-
-After testing you can [create a v1 tag](https://github.com/actions/toolkit/blob/master/docs/action-versioning.md) to reference the stable and latest V1 action

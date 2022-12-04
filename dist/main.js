@@ -62,13 +62,13 @@ function run() {
             const sdk = (0, graphql_sdk_1.getSdk)(new graphql_request_1.GraphQLClient(constants_1.GITHUB_GRAPHQL));
             switch (querytype) {
                 case 'whoami':
-                    core.setOutput('user', JSON.stringify(yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat)));
+                    core.setOutput('data', JSON.stringify(yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat)));
                     return;
                 case 'org_repos':
                     if (!orgName) {
                         throw new Error('Org name is required');
                     }
-                    core.setOutput('org_repos', JSON.stringify(yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName)));
+                    core.setOutput('data', JSON.stringify(yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName)));
                     return;
                 default:
                     throw new Error("Can't determine query type");

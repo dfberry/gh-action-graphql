@@ -25,11 +25,12 @@ async function run(): Promise<void> {
       throw new Error('GitHub Personal Access Token is required')
     }
 
+    
     const sdk: Sdk = getSdk(new GraphQLClient(GITHUB_GRAPHQL))
     switch (querytype) {
       case 'whoami':
         core.setOutput(
-          'user',
+          'data',
           JSON.stringify(await gitHubGraphQLWhoAmI(sdk, pat))
         )
         return
@@ -38,7 +39,7 @@ async function run(): Promise<void> {
           throw new Error('Org name is required')
         }
         core.setOutput(
-          'org_repos',
+          'data',
           JSON.stringify(await gitHubGraphQLOrgReposAg(sdk, pat, orgName))
         )
         return
