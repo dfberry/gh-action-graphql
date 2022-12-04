@@ -16,4 +16,4 @@ inputs:
     default: 'Azure-Samples'
 runs:
   using: 'node16'
-  main: 'dist/main.js'
+  main: 'package/index.js'

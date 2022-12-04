@@ -5,3 +5,4 @@ jest.config.js
 src/__tests__/**
 src/generated/**
 src/mockdata/**
+package/
