@@ -1,5 +1,5 @@
 import {
-  RepoInfoAgFragment,
+  MyRepoFieldsFragment,
   OrgReposAgQueryVariables,
   Sdk
 } from './generated/graphql.sdk'
@@ -23,13 +23,16 @@ export async function gitHubGraphQLWhoAmI(
 export async function gitHubGraphQLOrgReposAg(
   sdk: Sdk,
   personal_access_token: string,
-  org_name: string
-): Promise<unknown> {
+  org_name: string,
+  max_data = -1, // Number of repos to return in total, -1 means all data
+  page_size = 100, // Max page size for GitHub
+  rate_limit_ms = TIME_30_SECONDS
+): Promise<MyRepoFieldsFragment[]> {
   if (!personal_access_token)
     throw new Error('gitHubGraphQLOrgRepos::missing pat')
   const variables: OrgReposAgQueryVariables = {
     organization: org_name,
-    pageSize: 100,
+    pageSize: page_size,
     after: undefined
   }
   const requestHeaders = {
@@ -38,19 +41,29 @@ export async function gitHubGraphQLOrgReposAg(
   }
 
   let hasNextPage = true
-  const repos: RepoInfoAgFragment[] = []
+  let currentData = 0
+  const repos: MyRepoFieldsFragment[] = []
 
   do {
     // rate limit - TBD: Fix this
-    await waitfor(TIME_30_SECONDS)
+    if (rate_limit_ms > 0) {
+      await waitfor(rate_limit_ms)
+    }
+
+    // Adjust page size to return correct number
+    if (currentData + page_size > max_data) {
+      variables.pageSize = max_data - currentData
+    }
+
     const data = await sdk.OrgReposAg(variables, requestHeaders)
 
     // Get repos
     if (data?.organization?.repositories?.edges) {
       const flattenEdge = data?.organization.repositories.edges.map(
-        (edge) => edge?.node as RepoInfoAgFragment
+        (edge) => edge?.node as MyRepoFieldsFragment
       )
       repos.push(...flattenEdge)
+      currentData += flattenEdge.length
 
       // Manage cursor for next page
       hasNextPage =
@@ -63,6 +76,6 @@ export async function gitHubGraphQLOrgReposAg(
           ? data?.organization?.repositories?.pageInfo?.endCursor
           : undefined
     }
-  } while (hasNextPage)
+  } while (hasNextPage && currentData < max_data)
   return repos
 }

@@ -20,11 +20,23 @@ The name of the org used by `github_org` query. Default is `Azure-Samples`.
 
 ### `save_to_file` 
 
-Save output to file instead of output data to save runtime memory. Defaults to true.
+Save output to file instead of output data to save runtime memory. Default is true.
 
 ### `save_to_file_name`
 
 Output file name in root. Default is `graphql_data.json`.
+
+### `max_items`
+
+If returning an array from the `query_type`, limit results to `max_items` count. Default is 10.
+
+### `max_page_size`
+
+Page size used in query, if query can return a page. Default is 100.
+
+### `rate_limit_delay`
+
+If paging, use rate limit to stay within rate limits. Time in milliseconds. Default is 30000.
 
 ## Outputs
 
@@ -88,11 +100,10 @@ jobs:
         with:
           connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
           path: ./
-          name: repos.json
-      - name: Example 2: Upload cat's file to Azure Storage
-        uses: fixpoint/azblob-upload-artifact@v4
+          name: graphql_data.json
+      - name: Example 2: Upload actions file to repo artifacts
+        uses: actions/upload-artifact@v3
         with:
-          connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          name: graphql_data.json
           path: ./
-          name: repos.cat.json 
 ```

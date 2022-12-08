@@ -45,11 +45,23 @@ const graphql_request_1 = require("graphql-request");
 const getdata_1 = require("./getdata");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
+function getQueryType(str) {
+    switch (str) {
+        case 'whoami':
+        case 'org_repos':
+            return str;
+        default:
+            return 'whoami';
+    }
+}
 function getVarsFromAction() {
     const variables = {
         pat: core.getInput('github_personal_access_token'),
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
-        querytype: core.getInput('query_type') || 'whoami',
+        querytype: getQueryType(core.getInput('query_type')),
+        maxItems: parseInt(core.getInput('max_items'), constants_1.DEFAULT_MAX_ITEMS),
+        maxPageSize: parseInt(core.getInput('max_page_size'), constants_1.DEFAULT_PAGE_SIZE),
+        maxDelayForRateLimit: parseInt(core.getInput('rate_limit_delay'), constants_1.TIME_30_SECONDS),
         save_to_file: core.getInput('save_to_file') || 'true',
         save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME
     };
@@ -59,7 +71,7 @@ function getVarsFromAction() {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { pat, orgName, querytype, save_to_file, save_to_file_name } = getVarsFromAction();
+            const { pat, orgName, querytype, save_to_file, save_to_file_name, maxItems, maxPageSize, maxDelayForRateLimit } = getVarsFromAction();
             if (!pat) {
                 throw new Error('GitHub Personal Access Token is required');
             }
@@ -75,7 +87,7 @@ function run() {
                     if (!orgName) {
                         throw new Error('Org name is required');
                     }
-                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName);
+                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName, maxItems, maxPageSize, maxDelayForRateLimit);
                     core.setOutput('data', JSON.stringify(data));
                     break;
                 default:
@@ -87,6 +99,7 @@ function run() {
                 yield fs_1.promises.writeFile(dirFile, JSON.stringify(data), 'utf8');
                 console.log(`Data output file written to ${dirFile}`);
             }
+            return data;
         }
         catch (error) {
             if (error instanceof Error) {

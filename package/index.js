@@ -7,11 +7,14 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.TIME_20_SECONDS = exports.TIME_30_SECONDS = exports.DEFAULT_SAVED_FILE_NAME = exports.GITHUB_GRAPHQL = void 0;
+exports.DEFAULT_MAX_ITEMS = exports.DEFAULT_PAGE_SIZE = exports.TIME_0_SECONDS = exports.TIME_20_SECONDS = exports.TIME_30_SECONDS = exports.DEFAULT_SAVED_FILE_NAME = exports.GITHUB_GRAPHQL = void 0;
 exports.GITHUB_GRAPHQL = 'https://api.github.com/graphql';
 exports.DEFAULT_SAVED_FILE_NAME = 'graphql_data.json';
 exports.TIME_30_SECONDS = 30000;
 exports.TIME_20_SECONDS = 20000;
+exports.TIME_0_SECONDS = 0;
+exports.DEFAULT_PAGE_SIZE = 100;
+exports.DEFAULT_MAX_ITEMS = 10;
 
 
 /***/ }),
@@ -28,7 +31,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.IssueClosedStateReason = exports.IpAllowListForInstalledAppsEnabledSettingValue = exports.IpAllowListEntryOrderField = exports.IpAllowListEnabledSettingValue = exports.IdentityProviderConfigurationState = exports.GitSignatureState = exports.GistPrivacy = exports.GistOrderField = exports.FundingPlatform = exports.FileViewedState = exports.EnterpriseUserDeployment = exports.EnterpriseUserAccountMembershipRole = exports.EnterpriseServerUserAccountsUploadSyncState = exports.EnterpriseServerUserAccountsUploadOrderField = exports.EnterpriseServerUserAccountOrderField = exports.EnterpriseServerUserAccountEmailOrderField = exports.EnterpriseServerInstallationOrderField = exports.EnterpriseMembersCanMakePurchasesSettingValue = exports.EnterpriseMembersCanCreateRepositoriesSettingValue = exports.EnterpriseMemberOrderField = exports.EnterpriseEnabledSettingValue = exports.EnterpriseEnabledDisabledSettingValue = exports.EnterpriseDefaultRepositoryPermissionSettingValue = exports.EnterpriseAllowPrivateRepositoryForkingPolicyValue = exports.EnterpriseAdministratorRole = exports.EnterpriseAdministratorInvitationOrderField = exports.DismissReason = exports.DiscussionPollOptionOrderField = exports.DiscussionOrderField = exports.DiffSide = exports.DeploymentStatusState = exports.DeploymentState = exports.DeploymentReviewState = exports.DeploymentProtectionRuleType = exports.DeploymentOrderField = exports.DependencyGraphEcosystem = exports.DefaultRepositoryPermissionField = exports.ContributionLevel = exports.ComparisonStatus = exports.CommitContributionOrderField = exports.CommentCannotUpdateReason = exports.CommentAuthorAssociation = exports.CollaboratorAffiliation = exports.CheckStatusState = exports.CheckRunType = exports.CheckRunState = exports.CheckConclusionState = exports.CheckAnnotationLevel = exports.AuditLogOrderField = exports.ActorType = void 0;
 exports.ProjectNextFieldType = exports.ProjectItemType = exports.ProjectColumnPurpose = exports.ProjectCardState = exports.ProjectCardArchivedState = exports.PinnedDiscussionPattern = exports.PinnedDiscussionGradient = exports.PinnableItemType = exports.PatchStatus = exports.PackageVersionOrderField = exports.PackageType = exports.PackageOrderField = exports.PackageFileOrderField = exports.OrganizationOrderField = exports.OrganizationMembersCanCreateRepositoriesSettingValue = exports.OrganizationMemberRole = exports.OrganizationInvitationType = exports.OrganizationInvitationRole = exports.OrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility = exports.OrgUpdateMemberAuditEntryPermission = exports.OrgUpdateDefaultRepositoryPermissionAuditEntryPermission = exports.OrgRemoveOutsideCollaboratorAuditEntryReason = exports.OrgRemoveOutsideCollaboratorAuditEntryMembershipType = exports.OrgRemoveMemberAuditEntryReason = exports.OrgRemoveMemberAuditEntryMembershipType = exports.OrgRemoveBillingManagerAuditEntryReason = exports.OrgEnterpriseOwnerOrderField = exports.OrgCreateAuditEntryBillingPlan = exports.OrgAddMemberAuditEntryPermission = exports.OrderDirection = exports.OperationType = exports.OauthApplicationCreateAuditEntryState = exports.OidcProviderType = exports.NotificationRestrictionSettingValue = exports.MilestoneState = exports.MilestoneOrderField = exports.MigrationState = exports.MigrationSourceType = exports.MergeableState = exports.MergeStateStatus = exports.MergeCommitTitle = exports.MergeCommitMessage = exports.LockReason = exports.LanguageOrderField = exports.LabelOrderField = exports.IssueTimelineItemsItemType = exports.IssueStateReason = exports.IssueState = exports.IssueOrderField = exports.IssueCommentOrderField = void 0;
 exports.RepositoryVulnerabilityAlertState = exports.RepositoryVulnerabilityAlertDependencyScope = exports.RepositoryVisibility = exports.RepositoryPrivacy = exports.RepositoryPermission = exports.RepositoryOrderField = exports.RepositoryMigrationOrderField = exports.RepositoryMigrationOrderDirection = exports.RepositoryLockReason = exports.RepositoryInvitationOrderField = exports.RepositoryInteractionLimitOrigin = exports.RepositoryInteractionLimitExpiry = exports.RepositoryInteractionLimit = exports.RepositoryContributionType = exports.RepositoryAffiliation = exports.ReportedContentClassifiers = exports.RepoRemoveMemberAuditEntryVisibility = exports.RepoDestroyAuditEntryVisibility = exports.RepoCreateAuditEntryVisibility = exports.RepoChangeMergeSettingAuditEntryMergeType = exports.RepoArchivedAuditEntryVisibility = exports.RepoAddMemberAuditEntryVisibility = exports.RepoAccessAuditEntryVisibility = exports.ReleaseOrderField = exports.RefOrderField = exports.ReactionOrderField = exports.ReactionContent = exports.PullRequestUpdateState = exports.PullRequestTimelineItemsItemType = exports.PullRequestState = exports.PullRequestReviewState = exports.PullRequestReviewEvent = exports.PullRequestReviewDecision = exports.PullRequestReviewCommentState = exports.PullRequestOrderField = exports.PullRequestMergeMethod = exports.ProjectViewLayout = exports.ProjectV2ViewOrderField = exports.ProjectV2ViewLayout = exports.ProjectV2State = exports.ProjectV2OrderField = exports.ProjectV2ItemType = exports.ProjectV2ItemOrderField = exports.ProjectV2ItemFieldValueOrderField = exports.ProjectV2FieldType = exports.ProjectV2FieldOrderField = exports.ProjectTemplate = exports.ProjectState = exports.ProjectOrderField = exports.ProjectNextOrderField = void 0;
-exports.getSdk = exports.WhoAmIDocument = exports.OrgReposAgDocument = exports.RepoInfoAgFragmentDoc = exports.WorkflowRunOrderField = exports.VerifiableDomainOrderField = exports.UserStatusOrderField = exports.UserBlockDuration = exports.TrackedIssueStates = exports.TopicSuggestionDeclineReason = exports.TeamRole = exports.TeamReviewAssignmentAlgorithm = exports.TeamRepositoryOrderField = exports.TeamPrivacy = exports.TeamOrderField = exports.TeamMembershipType = exports.TeamMemberRole = exports.TeamMemberOrderField = exports.TeamDiscussionOrderField = exports.TeamDiscussionCommentOrderField = exports.SubscriptionState = exports.StatusState = exports.StarOrderField = exports.SquashMergeCommitTitle = exports.SquashMergeCommitMessage = exports.SponsorshipPrivacy = exports.SponsorshipOrderField = exports.SponsorshipNewsletterOrderField = exports.SponsorsTierOrderField = exports.SponsorsListingFeaturedItemFeatureableType = exports.SponsorsGoalKind = exports.SponsorsActivityPeriod = exports.SponsorsActivityOrderField = exports.SponsorsActivityAction = exports.SponsorableOrderField = exports.SponsorOrderField = exports.SecurityVulnerabilityOrderField = exports.SecurityAdvisorySeverity = exports.SecurityAdvisoryOrderField = exports.SecurityAdvisoryIdentifierType = exports.SecurityAdvisoryEcosystem = exports.SecurityAdvisoryClassification = exports.SearchType = exports.SavedReplyOrderField = exports.SamlSignatureAlgorithm = exports.SamlDigestAlgorithm = exports.RoleInOrganization = exports.RequestableCheckStatusState = void 0;
+exports.getSdk = exports.WhoAmIDocument = exports.OrgReposAgDocument = exports.MyUserFieldsFragmentDoc = exports.MyRepoFieldsFragmentDoc = exports.WorkflowRunOrderField = exports.VerifiableDomainOrderField = exports.UserStatusOrderField = exports.UserBlockDuration = exports.TrackedIssueStates = exports.TopicSuggestionDeclineReason = exports.TeamRole = exports.TeamReviewAssignmentAlgorithm = exports.TeamRepositoryOrderField = exports.TeamPrivacy = exports.TeamOrderField = exports.TeamMembershipType = exports.TeamMemberRole = exports.TeamMemberOrderField = exports.TeamDiscussionOrderField = exports.TeamDiscussionCommentOrderField = exports.SubscriptionState = exports.StatusState = exports.StarOrderField = exports.SquashMergeCommitTitle = exports.SquashMergeCommitMessage = exports.SponsorshipPrivacy = exports.SponsorshipOrderField = exports.SponsorshipNewsletterOrderField = exports.SponsorsTierOrderField = exports.SponsorsListingFeaturedItemFeatureableType = exports.SponsorsGoalKind = exports.SponsorsActivityPeriod = exports.SponsorsActivityOrderField = exports.SponsorsActivityAction = exports.SponsorableOrderField = exports.SponsorOrderField = exports.SecurityVulnerabilityOrderField = exports.SecurityAdvisorySeverity = exports.SecurityAdvisoryOrderField = exports.SecurityAdvisoryIdentifierType = exports.SecurityAdvisoryEcosystem = exports.SecurityAdvisoryClassification = exports.SearchType = exports.SavedReplyOrderField = exports.SamlSignatureAlgorithm = exports.SamlDigestAlgorithm = exports.RoleInOrganization = exports.RequestableCheckStatusState = void 0;
 const graphql_tag_1 = __importDefault(__nccwpck_require__(8435));
 /** The actor's type. */
 var ActorType;
@@ -2400,8 +2403,8 @@ var WorkflowRunOrderField;
     /** Order workflow runs by most recently created */
     WorkflowRunOrderField["CreatedAt"] = "CREATED_AT";
 })(WorkflowRunOrderField = exports.WorkflowRunOrderField || (exports.WorkflowRunOrderField = {}));
-exports.RepoInfoAgFragmentDoc = (0, graphql_tag_1.default) `
-  fragment RepoInfoAg on Repository {
+exports.MyRepoFieldsFragmentDoc = (0, graphql_tag_1.default) `
+  fragment MyRepoFields on Repository {
     repositoryName: name
     id
     url
@@ -2421,6 +2424,11 @@ exports.RepoInfoAgFragmentDoc = (0, graphql_tag_1.default) `
     }
   }
 `;
+exports.MyUserFieldsFragmentDoc = (0, graphql_tag_1.default) `
+  fragment myUserFields on User {
+    login
+  }
+`;
 exports.OrgReposAgDocument = (0, graphql_tag_1.default) `
   query OrgReposAg($organization: String!, $pageSize: Int, $after: String) {
     organization(login: $organization) {
@@ -2438,35 +2446,21 @@ exports.OrgReposAgDocument = (0, graphql_tag_1.default) `
         edges {
           cursor
           node {
-            repositoryName: name
-            id
-            url
-            descriptionHTML
-            updatedAt
-            stargazers {
-              totalCount
-            }
-            forks {
-              totalCount
-            }
-            issues(states: [OPEN]) {
-              totalCount
-            }
-            pullRequests(states: [OPEN]) {
-              totalCount
-            }
+            ...MyRepoFields
           }
         }
       }
     }
   }
+  ${exports.MyRepoFieldsFragmentDoc}
 `;
 exports.WhoAmIDocument = (0, graphql_tag_1.default) `
   query WhoAmI {
     viewer {
-      login
+      ...myUserFields
     }
   }
+  ${exports.MyUserFieldsFragmentDoc}
 `;
 const defaultWrapper = (action, _operationName, _operationType) => action();
 function getSdk(client, withWrapper = defaultWrapper) {
@@ -2516,14 +2510,16 @@ function gitHubGraphQLWhoAmI(sdk, personal_access_token) {
     });
 }
 exports.gitHubGraphQLWhoAmI = gitHubGraphQLWhoAmI;
-function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name) {
+function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name, max_data = -1, // Number of repos to return in total, -1 means all data
+page_size = 100, // Max page size for GitHub
+rate_limit_ms = constants_1.TIME_30_SECONDS) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
     return __awaiter(this, void 0, void 0, function* () {
         if (!personal_access_token)
             throw new Error('gitHubGraphQLOrgRepos::missing pat');
         const variables = {
             organization: org_name,
-            pageSize: 100,
+            pageSize: page_size,
             after: undefined
         };
         const requestHeaders = {
@@ -2531,15 +2527,23 @@ function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name) {
             Authorization: `Bearer ${personal_access_token}`
         };
         let hasNextPage = true;
+        let currentData = 0;
         const repos = [];
         do {
             // rate limit - TBD: Fix this
-            yield (0, utils_1.waitfor)(constants_1.TIME_30_SECONDS);
+            if (rate_limit_ms > 0) {
+                yield (0, utils_1.waitfor)(rate_limit_ms);
+            }
+            // Adjust page size to return correct number
+            if (currentData + page_size > max_data) {
+                variables.pageSize = max_data - currentData;
+            }
             const data = yield sdk.OrgReposAg(variables, requestHeaders);
             // Get repos
             if ((_b = (_a = data === null || data === void 0 ? void 0 : data.organization) === null || _a === void 0 ? void 0 : _a.repositories) === null || _b === void 0 ? void 0 : _b.edges) {
                 const flattenEdge = data === null || data === void 0 ? void 0 : data.organization.repositories.edges.map((edge) => edge === null || edge === void 0 ? void 0 : edge.node);
                 repos.push(...flattenEdge);
+                currentData += flattenEdge.length;
                 // Manage cursor for next page
                 hasNextPage =
                     ((_c = data.organization) === null || _c === void 0 ? void 0 : _c.repositories.pageInfo.hasNextPage) !== undefined
@@ -2551,7 +2555,7 @@ function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name) {
                         ? (_o = (_m = (_l = data === null || data === void 0 ? void 0 : data.organization) === null || _l === void 0 ? void 0 : _l.repositories) === null || _m === void 0 ? void 0 : _m.pageInfo) === null || _o === void 0 ? void 0 : _o.endCursor
                         : undefined;
             }
-        } while (hasNextPage);
+        } while (hasNextPage && currentData < max_data);
         return repos;
     });
 }
@@ -2611,11 +2615,23 @@ const graphql_request_1 = __nccwpck_require__(2476);
 const getdata_1 = __nccwpck_require__(8962);
 const dotenv_1 = __importDefault(__nccwpck_require__(2437));
 dotenv_1.default.config();
+function getQueryType(str) {
+    switch (str) {
+        case 'whoami':
+        case 'org_repos':
+            return str;
+        default:
+            return 'whoami';
+    }
+}
 function getVarsFromAction() {
     const variables = {
         pat: core.getInput('github_personal_access_token'),
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
-        querytype: core.getInput('query_type') || 'whoami',
+        querytype: getQueryType(core.getInput('query_type')),
+        maxItems: parseInt(core.getInput('max_items'), constants_1.DEFAULT_MAX_ITEMS),
+        maxPageSize: parseInt(core.getInput('max_page_size'), constants_1.DEFAULT_PAGE_SIZE),
+        maxDelayForRateLimit: parseInt(core.getInput('rate_limit_delay'), constants_1.TIME_30_SECONDS),
         save_to_file: core.getInput('save_to_file') || 'true',
         save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME
     };
@@ -2625,7 +2641,7 @@ function getVarsFromAction() {
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { pat, orgName, querytype, save_to_file, save_to_file_name } = getVarsFromAction();
+            const { pat, orgName, querytype, save_to_file, save_to_file_name, maxItems, maxPageSize, maxDelayForRateLimit } = getVarsFromAction();
             if (!pat) {
                 throw new Error('GitHub Personal Access Token is required');
             }
@@ -2641,7 +2657,7 @@ function run() {
                     if (!orgName) {
                         throw new Error('Org name is required');
                     }
-                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName);
+                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName, maxItems, maxPageSize, maxDelayForRateLimit);
                     core.setOutput('data', JSON.stringify(data));
                     break;
                 default:
@@ -2653,6 +2669,7 @@ function run() {
                 yield fs_1.promises.writeFile(dirFile, JSON.stringify(data), 'utf8');
                 console.log(`Data output file written to ${dirFile}`);
             }
+            return data;
         }
         catch (error) {
             if (error instanceof Error) {

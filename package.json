@@ -1,6 +1,6 @@
 {
   "name": "gh-action-graphql",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "private": true,
   "description": "TypeScript template action",
   "main": "dist/main.js",
@@ -11,7 +11,7 @@
     "format:check": "prettier --check ./src/**/*.ts",
     "lint": "eslint src/**/*.ts",
     "package": "npm run build && ncc build -o package --no-cache --source-map --license licenses.txt",
-    "test": "npm run build && jest",
+    "test": "npm run build && jest --detectOpenHandles",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test",
     "codegen": "graphql-codegen --config codegen.yml"
   },
