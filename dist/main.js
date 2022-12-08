@@ -51,55 +51,70 @@ function getQueryType(str) {
         case 'org_repos':
             return str;
         default:
-            return 'whoami';
+            return 'org_repos';
     }
 }
 function getVarsFromAction() {
-    console.log(constants_1.DEFAULT_MAX_ITEMS);
-    console.log(constants_1.DEFAULT_PAGE_SIZE);
-    const maxItems = parseInt(core.getInput('max_items')) || constants_1.DEFAULT_MAX_ITEMS;
-    const maxPageSize = parseInt(core.getInput('max_page_size')) || constants_1.DEFAULT_PAGE_SIZE;
-    const variables = {
-        pat: core.getInput('github_personal_access_token'),
-        orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
-        querytype: getQueryType(core.getInput('query_type')),
-        maxItems,
-        maxPageSize,
-        maxDelayForRateLimit: parseInt(core.getInput('rate_limit_delay'), constants_1.TIME_30_SECONDS),
-        save_to_file: core.getInput('save_to_file') || 'true',
-        save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME
-    };
-    console.log(variables);
-    return variables;
+    if (process.env.NODE_ENV === 'development') {
+        return {
+            pat: process.env.github_personal_access_token || '',
+            orgName: process.env.github_org || '',
+            querytype: process.env.query_type,
+            maxItems: parseInt(process.env.maxItems, -1) || -1,
+            maxPageSize: parseInt(process.env.maxPageSize, 100) || 100,
+            maxDelayForRateLimit: parseInt(process.env.maxDelayForRateLimit, 5000) || 5000,
+            save_to_file: process.env.save_to_file || '',
+            save_to_file_name: process.env.save_to_file_name || ''
+        };
+    }
+    else {
+        const maxItems = parseInt(core.getInput('max_items')) || constants_1.DEFAULT_PAGE_SIZE;
+        const maxPageSize = parseInt(core.getInput('max_page_size')) || constants_1.DEFAULT_PAGE_SIZE;
+        const rateLimit = parseInt(core.getInput('rate_limit_delay')) || constants_1.TIME_30_SECONDS; // 30 seconds
+        return {
+            pat: core.getInput('github_personal_access_token'),
+            orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
+            querytype: getQueryType(core.getInput('query_type')),
+            maxItems,
+            maxPageSize,
+            maxDelayForRateLimit: rateLimit,
+            save_to_file: core.getInput('save_to_file') || 'true',
+            save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME
+        };
+    }
 }
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { pat, orgName, querytype, save_to_file, save_to_file_name, maxItems, maxPageSize, maxDelayForRateLimit } = getVarsFromAction();
-            if (!pat) {
+            const envVars = getVarsFromAction();
+            console.log(envVars);
+            if (!envVars.pat) {
                 throw new Error('GitHub Personal Access Token is required');
             }
             const sdk = (0, graphql_sdk_1.getSdk)(new graphql_request_1.GraphQLClient(constants_1.GITHUB_GRAPHQL));
             console.log(`Ready to query`);
             let data = undefined;
-            switch (querytype) {
+            switch (envVars.querytype) {
                 case 'whoami':
-                    data = yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, pat);
+                    data = yield (0, getdata_1.gitHubGraphQLWhoAmI)(sdk, envVars.pat);
                     core.setOutput('data', JSON.stringify(data));
                     break;
                 case 'org_repos':
-                    if (!orgName) {
+                    if (!envVars.orgName) {
                         throw new Error('Org name is required');
                     }
-                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, pat, orgName, maxItems, maxPageSize, maxDelayForRateLimit);
-                    core.setOutput('data', JSON.stringify(data));
+                    data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, envVars.pat, envVars.orgName, envVars.maxItems, envVars.maxPageSize, envVars.maxDelayForRateLimit);
+                    // output either data to file or environment
+                    if (envVars.save_to_file === 'false') {
+                        core.setOutput('data', JSON.stringify(data));
+                    }
                     break;
                 default:
                     throw new Error("Can't determine query type");
             }
             // save data to file instead of blowing out GitHub Action memory
-            if (save_to_file === 'true' && save_to_file_name) {
-                const dirFile = path_1.default.join(__dirname, '..', save_to_file_name);
+            if (envVars.save_to_file === 'true' && envVars.save_to_file_name) {
+                const dirFile = path_1.default.join(__dirname, '..', envVars.save_to_file_name);
                 yield fs_1.promises.writeFile(dirFile, JSON.stringify(data), 'utf8');
                 console.log(`Data output file written to ${dirFile}`);
             }

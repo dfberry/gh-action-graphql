@@ -35,49 +35,50 @@ function getQueryType(str: string): QueryType {
     case 'org_repos':
       return str
     default:
-      return 'whoami'
+      return 'org_repos'
   }
 }
 
 function getVarsFromAction(): IncomingVariables {
+  if (process.env.NODE_ENV === 'development') {
+    return {
+      pat: process.env.github_personal_access_token || '',
+      orgName: process.env.github_org || '',
+      querytype: process.env.query_type as QueryType,
+      maxItems: parseInt(process.env.maxItems as string, -1) || -1,
+      maxPageSize: parseInt(process.env.maxPageSize as string, 100) || 100,
+      maxDelayForRateLimit:
+        parseInt(process.env.maxDelayForRateLimit as string, 5000) || 5000,
+      save_to_file: process.env.save_to_file || '',
+      save_to_file_name: process.env.save_to_file_name || ''
+    }
+  } else {
+    const maxItems = parseInt(core.getInput('max_items')) || DEFAULT_PAGE_SIZE
+    const maxPageSize =
+      parseInt(core.getInput('max_page_size')) || DEFAULT_PAGE_SIZE
+    const rateLimit =
+      parseInt(core.getInput('rate_limit_delay')) || TIME_30_SECONDS // 30 seconds
 
-  console.log(DEFAULT_MAX_ITEMS)
-  console.log(DEFAULT_PAGE_SIZE)
-
-  const maxItems = parseInt(core.getInput('max_items')) || DEFAULT_MAX_ITEMS
-  const maxPageSize = parseInt(core.getInput('max_page_size')) || DEFAULT_PAGE_SIZE
-
-  const variables: IncomingVariables = {
-    pat: core.getInput('github_personal_access_token'),
-    orgName: core.getInput('github_org') || GITHUB_GRAPHQL,
-    querytype: getQueryType(core.getInput('query_type')),
-    maxItems,
-    maxPageSize,
-    maxDelayForRateLimit: parseInt(
-      core.getInput('rate_limit_delay'),
-      TIME_30_SECONDS
-    ), // 30 seconds
-    save_to_file: core.getInput('save_to_file') || 'true',
-    save_to_file_name:
-      core.getInput('save_to_file_name') || DEFAULT_SAVED_FILE_NAME
+    return {
+      pat: core.getInput('github_personal_access_token'),
+      orgName: core.getInput('github_org') || GITHUB_GRAPHQL,
+      querytype: getQueryType(core.getInput('query_type')),
+      maxItems,
+      maxPageSize,
+      maxDelayForRateLimit: rateLimit,
+      save_to_file: core.getInput('save_to_file') || 'true',
+      save_to_file_name:
+        core.getInput('save_to_file_name') || DEFAULT_SAVED_FILE_NAME
+    }
   }
-  console.log(variables)
-  return variables
 }
 
 async function run(): Promise<unknown> {
   try {
-    const {
-      pat,
-      orgName,
-      querytype,
-      save_to_file,
-      save_to_file_name,
-      maxItems,
-      maxPageSize,
-      maxDelayForRateLimit
-    } = getVarsFromAction()
-    if (!pat) {
+    const envVars = getVarsFromAction()
+    console.log(envVars)
+
+    if (!envVars.pat) {
       throw new Error('GitHub Personal Access Token is required')
     }
 
@@ -86,32 +87,39 @@ async function run(): Promise<unknown> {
 
     let data = undefined
 
-    switch (querytype) {
+    switch (envVars.querytype) {
       case 'whoami':
-        data = await gitHubGraphQLWhoAmI(sdk, pat)
+        data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
         core.setOutput('data', JSON.stringify(data))
         break
       case 'org_repos':
-        if (!orgName) {
+        if (!envVars.orgName) {
           throw new Error('Org name is required')
         }
         data = await gitHubGraphQLOrgReposAg(
           sdk,
-          pat,
-          orgName,
-          maxItems,
-          maxPageSize,
-          maxDelayForRateLimit
+          envVars.pat,
+          envVars.orgName,
+          envVars.maxItems,
+          envVars.maxPageSize,
+          envVars.maxDelayForRateLimit
         )
-        core.setOutput('data', JSON.stringify(data))
+        // output either data to file or environment
+        if (envVars.save_to_file === 'false') {
+          core.setOutput('data', JSON.stringify(data))
+        }
         break
       default:
         throw new Error("Can't determine query type")
     }
 
     // save data to file instead of blowing out GitHub Action memory
-    if (save_to_file === 'true' && save_to_file_name) {
-      const dirFile: string = path.join(__dirname, '..', save_to_file_name)
+    if (envVars.save_to_file === 'true' && envVars.save_to_file_name) {
+      const dirFile: string = path.join(
+        __dirname,
+        '..',
+        envVars.save_to_file_name
+      )
       await fs.writeFile(dirFile, JSON.stringify(data), 'utf8')
       console.log(`Data output file written to ${dirFile}`)
     }

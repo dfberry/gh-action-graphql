@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */ // --> OFF
 import {
   MyRepoFieldsFragment,
   OrgReposAgQueryVariables,
@@ -32,7 +33,7 @@ export async function gitHubGraphQLOrgReposAg(
   const variables: OrgReposAgQueryVariables = {
     organization: org_name,
     pageSize: page_size,
-    after: undefined
+    after: null
   }
   const requestHeaders = {
     'Content-Type': 'application/json',
@@ -44,15 +45,12 @@ export async function gitHubGraphQLOrgReposAg(
   const repos: MyRepoFieldsFragment[] = []
 
   do {
-    // rate limit - TBD: Fix this
-    if (rate_limit_ms > 0) {
-      await waitfor(rate_limit_ms)
-    }
+    console.log(`variables = ${JSON.stringify(variables)}`)
 
     // Adjust page size to return correct number
-    if (currentData + page_size > max_data) {
-      variables.pageSize = max_data - currentData
-    }
+    // if (currentData + page_size > max_data) {
+    //   variables.pageSize = max_data - currentData
+    // }
 
     const data = await sdk.OrgReposAg(variables, requestHeaders)
 
@@ -62,19 +60,28 @@ export async function gitHubGraphQLOrgReposAg(
         (edge) => edge?.node as MyRepoFieldsFragment
       )
       repos.push(...flattenEdge)
-      currentData += flattenEdge.length
 
       // Manage cursor for next page
       hasNextPage =
         data.organization?.repositories.pageInfo.hasNextPage !== undefined
           ? data.organization?.repositories.pageInfo.hasNextPage
           : false
+      console.log(`hasNextPage ${hasNextPage}`)
       variables.after =
         data?.organization?.repositories?.pageInfo?.endCursor !== undefined &&
         data?.organization?.repositories?.pageInfo?.endCursor !== null
           ? data?.organization?.repositories?.pageInfo?.endCursor
           : undefined
+
+      // rate limit - TBD: Fix this
+      if (hasNextPage && rate_limit_ms > 0) {
+        // @ts-ignore
+        console.log(`waiting ${rate_limit_ms}`)
+        await waitfor(rate_limit_ms)
+      }
+    } else {
+      console.log(`edges not returned`)
     }
-  } while (hasNextPage && currentData < max_data)
+  } while (hasNextPage)
   return repos
 }
