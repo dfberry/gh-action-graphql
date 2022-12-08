@@ -61,8 +61,10 @@ function getVarsFromAction() {
             orgName: process.env.github_org || '',
             querytype: process.env.query_type,
             maxItems: parseInt(process.env.maxItems, -1) || -1,
-            maxPageSize: parseInt(process.env.maxPageSize, 100) || 100,
-            maxDelayForRateLimit: parseInt(process.env.maxDelayForRateLimit, 5000) || 5000,
+            maxPageSize: parseInt(process.env.maxPageSize, constants_1.DEFAULT_PAGE_SIZE) ||
+                constants_1.DEFAULT_PAGE_SIZE,
+            maxDelayForRateLimit: parseInt(process.env.maxDelayForRateLimit, constants_1.TIME_5_SECONDS) ||
+                constants_1.TIME_5_SECONDS,
             save_to_file: process.env.save_to_file || '',
             save_to_file_name: process.env.save_to_file_name || ''
         };
@@ -70,7 +72,7 @@ function getVarsFromAction() {
     else {
         const maxItems = parseInt(core.getInput('max_items')) || constants_1.DEFAULT_PAGE_SIZE;
         const maxPageSize = parseInt(core.getInput('max_page_size')) || constants_1.DEFAULT_PAGE_SIZE;
-        const rateLimit = parseInt(core.getInput('rate_limit_delay')) || constants_1.TIME_30_SECONDS; // 30 seconds
+        const rateLimit = parseInt(core.getInput('rate_limit_delay')) || constants_1.TIME_5_SECONDS;
         return {
             pat: core.getInput('github_personal_access_token'),
             orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,

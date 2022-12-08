@@ -75,7 +75,6 @@ export async function gitHubGraphQLOrgReposAg(
 
       // rate limit - TBD: Fix this
       if (hasNextPage && rate_limit_ms > 0) {
-        // @ts-ignore
         console.log(`waiting ${rate_limit_ms}`)
         await waitfor(rate_limit_ms)
       }

@@ -26,17 +26,13 @@ Save output to file instead of output data to save runtime memory. Default is tr
 
 Output file name in root. Default is `graphql_data.json`.
 
-### `max_items`
-
-If returning an array from the `query_type`, limit results to `max_items` count. Default is 10.
-
 ### `max_page_size`
 
 Page size used in query, if query can return a page. Default is 100.
 
 ### `rate_limit_delay`
 
-If paging, use rate limit to stay within rate limits. Time in milliseconds. Default is 30000.
+If paging, use rate limit to stay within rate limits. Time in milliseconds. Default is 5000.
 
 ## Outputs
 

@@ -7,11 +7,13 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.DEFAULT_MAX_ITEMS = exports.DEFAULT_PAGE_SIZE = exports.TIME_0_SECONDS = exports.TIME_20_SECONDS = exports.TIME_30_SECONDS = exports.DEFAULT_SAVED_FILE_NAME = exports.GITHUB_GRAPHQL = void 0;
+exports.DEFAULT_MAX_ITEMS = exports.DEFAULT_PAGE_SIZE = exports.TIME_0_SECONDS = exports.TIME_5_SECONDS = exports.TIME_10_SECONDS = exports.TIME_20_SECONDS = exports.TIME_30_SECONDS = exports.DEFAULT_SAVED_FILE_NAME = exports.GITHUB_GRAPHQL = void 0;
 exports.GITHUB_GRAPHQL = 'https://api.github.com/graphql';
 exports.DEFAULT_SAVED_FILE_NAME = 'graphql_data.json';
 exports.TIME_30_SECONDS = 30000;
 exports.TIME_20_SECONDS = 20000;
+exports.TIME_10_SECONDS = 10000;
+exports.TIME_5_SECONDS = 5000;
 exports.TIME_0_SECONDS = 0;
 exports.DEFAULT_PAGE_SIZE = 100;
 exports.DEFAULT_MAX_ITEMS = 10;
@@ -2552,7 +2554,6 @@ rate_limit_ms) {
                         : undefined;
                 // rate limit - TBD: Fix this
                 if (hasNextPage && rate_limit_ms > 0) {
-                    // @ts-ignore
                     console.log(`waiting ${rate_limit_ms}`);
                     yield (0, utils_1.waitfor)(rate_limit_ms);
                 }
@@ -2636,8 +2637,10 @@ function getVarsFromAction() {
             orgName: process.env.github_org || '',
             querytype: process.env.query_type,
             maxItems: parseInt(process.env.maxItems, -1) || -1,
-            maxPageSize: parseInt(process.env.maxPageSize, 100) || 100,
-            maxDelayForRateLimit: parseInt(process.env.maxDelayForRateLimit, 5000) || 5000,
+            maxPageSize: parseInt(process.env.maxPageSize, constants_1.DEFAULT_PAGE_SIZE) ||
+                constants_1.DEFAULT_PAGE_SIZE,
+            maxDelayForRateLimit: parseInt(process.env.maxDelayForRateLimit, constants_1.TIME_5_SECONDS) ||
+                constants_1.TIME_5_SECONDS,
             save_to_file: process.env.save_to_file || '',
             save_to_file_name: process.env.save_to_file_name || ''
         };
@@ -2645,7 +2648,7 @@ function getVarsFromAction() {
     else {
         const maxItems = parseInt(core.getInput('max_items')) || constants_1.DEFAULT_PAGE_SIZE;
         const maxPageSize = parseInt(core.getInput('max_page_size')) || constants_1.DEFAULT_PAGE_SIZE;
-        const rateLimit = parseInt(core.getInput('rate_limit_delay')) || constants_1.TIME_30_SECONDS; // 30 seconds
+        const rateLimit = parseInt(core.getInput('rate_limit_delay')) || constants_1.TIME_5_SECONDS;
         return {
             pat: core.getInput('github_personal_access_token'),
             orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,

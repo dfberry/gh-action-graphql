@@ -6,9 +6,8 @@ import { getSdk, Sdk } from './generated/graphql.sdk'
 import {
   DEFAULT_SAVED_FILE_NAME,
   GITHUB_GRAPHQL,
-  TIME_30_SECONDS,
-  DEFAULT_PAGE_SIZE,
-  DEFAULT_MAX_ITEMS
+  TIME_5_SECONDS,
+  DEFAULT_PAGE_SIZE
 } from './constants'
 import { GraphQLClient } from 'graphql-request'
 import { gitHubGraphQLOrgReposAg, gitHubGraphQLWhoAmI } from './getdata'
@@ -46,9 +45,12 @@ function getVarsFromAction(): IncomingVariables {
       orgName: process.env.github_org || '',
       querytype: process.env.query_type as QueryType,
       maxItems: parseInt(process.env.maxItems as string, -1) || -1,
-      maxPageSize: parseInt(process.env.maxPageSize as string, 100) || 100,
+      maxPageSize:
+        parseInt(process.env.maxPageSize as string, DEFAULT_PAGE_SIZE) ||
+        DEFAULT_PAGE_SIZE,
       maxDelayForRateLimit:
-        parseInt(process.env.maxDelayForRateLimit as string, 5000) || 5000,
+        parseInt(process.env.maxDelayForRateLimit as string, TIME_5_SECONDS) ||
+        TIME_5_SECONDS,
       save_to_file: process.env.save_to_file || '',
       save_to_file_name: process.env.save_to_file_name || ''
     }
@@ -57,7 +59,7 @@ function getVarsFromAction(): IncomingVariables {
     const maxPageSize =
       parseInt(core.getInput('max_page_size')) || DEFAULT_PAGE_SIZE
     const rateLimit =
-      parseInt(core.getInput('rate_limit_delay')) || TIME_30_SECONDS // 30 seconds
+      parseInt(core.getInput('rate_limit_delay')) || TIME_5_SECONDS
 
     return {
       pat: core.getInput('github_personal_access_token'),
