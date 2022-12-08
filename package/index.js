@@ -2494,7 +2494,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.gitHubGraphQLOrgReposAg = exports.gitHubGraphQLWhoAmI = void 0;
-const constants_1 = __nccwpck_require__(1912);
 const utils_1 = __nccwpck_require__(4729);
 function gitHubGraphQLWhoAmI(sdk, personal_access_token) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -2510,9 +2509,9 @@ function gitHubGraphQLWhoAmI(sdk, personal_access_token) {
     });
 }
 exports.gitHubGraphQLWhoAmI = gitHubGraphQLWhoAmI;
-function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name, max_data = -1, // Number of repos to return in total, -1 means all data
-page_size = 100, // Max page size for GitHub
-rate_limit_ms = constants_1.TIME_30_SECONDS) {
+function gitHubGraphQLOrgReposAg(sdk, personal_access_token, org_name, max_data, // Number of repos to return in total, -1 means all data
+page_size, // Max page size for GitHub
+rate_limit_ms) {
     var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
     return __awaiter(this, void 0, void 0, function* () {
         if (!personal_access_token)
@@ -2625,12 +2624,16 @@ function getQueryType(str) {
     }
 }
 function getVarsFromAction() {
+    console.log(constants_1.DEFAULT_MAX_ITEMS);
+    console.log(constants_1.DEFAULT_PAGE_SIZE);
+    const maxItems = parseInt(core.getInput('max_items')) || constants_1.DEFAULT_MAX_ITEMS;
+    const maxPageSize = parseInt(core.getInput('max_page_size')) || constants_1.DEFAULT_PAGE_SIZE;
     const variables = {
         pat: core.getInput('github_personal_access_token'),
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
         querytype: getQueryType(core.getInput('query_type')),
-        maxItems: parseInt(core.getInput('max_items'), constants_1.DEFAULT_MAX_ITEMS),
-        maxPageSize: parseInt(core.getInput('max_page_size'), constants_1.DEFAULT_PAGE_SIZE),
+        maxItems,
+        maxPageSize,
         maxDelayForRateLimit: parseInt(core.getInput('rate_limit_delay'), constants_1.TIME_30_SECONDS),
         save_to_file: core.getInput('save_to_file') || 'true',
         save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME

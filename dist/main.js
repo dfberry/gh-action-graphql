@@ -55,12 +55,16 @@ function getQueryType(str) {
     }
 }
 function getVarsFromAction() {
+    console.log(constants_1.DEFAULT_MAX_ITEMS);
+    console.log(constants_1.DEFAULT_PAGE_SIZE);
+    const maxItems = parseInt(core.getInput('max_items')) || constants_1.DEFAULT_MAX_ITEMS;
+    const maxPageSize = parseInt(core.getInput('max_page_size')) || constants_1.DEFAULT_PAGE_SIZE;
     const variables = {
         pat: core.getInput('github_personal_access_token'),
         orgName: core.getInput('github_org') || constants_1.GITHUB_GRAPHQL,
         querytype: getQueryType(core.getInput('query_type')),
-        maxItems: parseInt(core.getInput('max_items'), constants_1.DEFAULT_MAX_ITEMS),
-        maxPageSize: parseInt(core.getInput('max_page_size'), constants_1.DEFAULT_PAGE_SIZE),
+        maxItems,
+        maxPageSize,
         maxDelayForRateLimit: parseInt(core.getInput('rate_limit_delay'), constants_1.TIME_30_SECONDS),
         save_to_file: core.getInput('save_to_file') || 'true',
         save_to_file_name: core.getInput('save_to_file_name') || constants_1.DEFAULT_SAVED_FILE_NAME

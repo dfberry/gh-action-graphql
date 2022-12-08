@@ -3,7 +3,6 @@ import {
   OrgReposAgQueryVariables,
   Sdk
 } from './generated/graphql.sdk'
-import { TIME_30_SECONDS } from './constants'
 import { waitfor } from './utils'
 export async function gitHubGraphQLWhoAmI(
   sdk: Sdk,
@@ -24,9 +23,9 @@ export async function gitHubGraphQLOrgReposAg(
   sdk: Sdk,
   personal_access_token: string,
   org_name: string,
-  max_data = -1, // Number of repos to return in total, -1 means all data
-  page_size = 100, // Max page size for GitHub
-  rate_limit_ms = TIME_30_SECONDS
+  max_data: number, // Number of repos to return in total, -1 means all data
+  page_size: number, // Max page size for GitHub
+  rate_limit_ms: number
 ): Promise<MyRepoFieldsFragment[]> {
   if (!personal_access_token)
     throw new Error('gitHubGraphQLOrgRepos::missing pat')

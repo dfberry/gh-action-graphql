@@ -40,12 +40,19 @@ function getQueryType(str: string): QueryType {
 }
 
 function getVarsFromAction(): IncomingVariables {
-  const variables = {
+
+  console.log(DEFAULT_MAX_ITEMS)
+  console.log(DEFAULT_PAGE_SIZE)
+
+  const maxItems = parseInt(core.getInput('max_items')) || DEFAULT_MAX_ITEMS
+  const maxPageSize = parseInt(core.getInput('max_page_size')) || DEFAULT_PAGE_SIZE
+
+  const variables: IncomingVariables = {
     pat: core.getInput('github_personal_access_token'),
     orgName: core.getInput('github_org') || GITHUB_GRAPHQL,
     querytype: getQueryType(core.getInput('query_type')),
-    maxItems: parseInt(core.getInput('max_items'), DEFAULT_MAX_ITEMS),
-    maxPageSize: parseInt(core.getInput('max_page_size'), DEFAULT_PAGE_SIZE), // GitHub max = 100
+    maxItems,
+    maxPageSize,
     maxDelayForRateLimit: parseInt(
       core.getInput('rate_limit_delay'),
       TIME_30_SECONDS
