@@ -41,7 +41,6 @@ export async function gitHubGraphQLOrgReposAg(
   }
 
   let hasNextPage = true
-  let currentData = 0
   const repos: MyRepoFieldsFragment[] = []
 
   do {

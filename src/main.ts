@@ -118,8 +118,7 @@ async function run(): Promise<unknown> {
     // save data to file instead of blowing out GitHub Action memory
     if (envVars.save_to_file === 'true' && envVars.save_to_file_name) {
       const dirFile: string = path.join(
-        __dirname,
-        '..',
+        process.env.GITHUB_WORKSPACE as string,
         envVars.save_to_file_name
       )
       await fs.writeFile(dirFile, JSON.stringify(data), 'utf8')

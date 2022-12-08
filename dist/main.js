@@ -116,7 +116,7 @@ function run() {
             }
             // save data to file instead of blowing out GitHub Action memory
             if (envVars.save_to_file === 'true' && envVars.save_to_file_name) {
-                const dirFile = path_1.default.join(__dirname, '..', envVars.save_to_file_name);
+                const dirFile = path_1.default.join(process.env.GITHUB_WORKSPACE, envVars.save_to_file_name);
                 yield fs_1.promises.writeFile(dirFile, JSON.stringify(data), 'utf8');
                 console.log(`Data output file written to ${dirFile}`);
             }
