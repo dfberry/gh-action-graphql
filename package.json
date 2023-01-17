@@ -1,18 +1,20 @@
 {
   "name": "gh-action-graphql",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "private": true,
   "description": "TypeScript template action",
   "main": "dist/main.js",
   "scripts": {
-    "clean": "rm -rf dist && rm -rf package",
-    "build": "npm run clean && npm run format:fix && npm run lint && tsc",
-    "format:fix": "prettier --write ./src/**/*.ts",
-    "format:check": "prettier --check ./src/**/*.ts",
-    "lint": "eslint src/**/*.ts",
+    "clean": "rm -rf dist && rm -rf package && rm -rf ./src/generated",
+    "build": "npm run clean && npm run build:format:fix && npm run build:lint && npm run build:sdk && npm run build:tsc",
+    "build:tsc": "tsc",
+    "build:sdk": "npm run codegen",
+    "build:format:fix": "prettier --write ./src/**/*.ts",
+    "Build:format:check": "prettier --check ./src/**/*.ts",
+    "build:lint": "eslint src/**/*.ts",
     "package": "npm run build && ncc build -o package --no-cache --source-map --license licenses.txt",
     "test": "npm run build && jest --detectOpenHandles",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test",
+    "all": "npm run build && npm run format && npm run build:lint && npm run package && npm test",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
