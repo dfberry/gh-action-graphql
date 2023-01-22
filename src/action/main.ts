@@ -2,20 +2,20 @@
 import * as core from '@actions/core'
 import { promises as fs } from 'fs'
 import path from 'path'
-import { getSdk, Sdk } from './generated/graphql.sdk'
+import { getSdk, Sdk } from '../generated/graphql.sdk'
 import {
   DEFAULT_SAVED_FILE_NAME,
   GITHUB_GRAPHQL,
   TIME_5_SECONDS,
   DEFAULT_PAGE_SIZE
-} from './constants'
+} from './utils/constants'
 import { GraphQLClient } from 'graphql-request'
-import { gitHubGraphQLOrgReposAg, gitHubGraphQLWhoAmI } from './getdata'
+import { gitHubGraphQLWhoAmI, gitHubGraphQLOrgReposAg } from './v2/getdata'
 
 import dotenv from 'dotenv'
 dotenv.config()
 
-type QueryType = 'whoami' | 'org_repos'
+type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended'
 
 type IncomingVariables = {
   pat: string // personal access token
@@ -32,6 +32,8 @@ function getQueryType(str: string): QueryType {
   switch (str) {
     case 'whoami':
     case 'org_repos':
+      return str
+    case 'org_repos_extended':
       return str
     default:
       return 'org_repos'
@@ -111,6 +113,23 @@ async function run(): Promise<unknown> {
           core.setOutput('data', JSON.stringify(data))
         }
         break
+      // case 'org_repos_extended':
+      //   if (!envVars.orgName) {
+      //     throw new Error('Org name is required')
+      //   }
+      //   data = await gitHubGraphQLOrgReposAgV2(
+      //     sdk,
+      //     envVars.pat,
+      //     envVars.orgName,
+      //     envVars.maxItems,
+      //     envVars.maxPageSize,
+      //     envVars.maxDelayForRateLimit
+      //   )
+      //   // output either data to file or environment
+      //   if (envVars.save_to_file === 'false') {
+      //     core.setOutput('data', JSON.stringify(data))
+      //   }
+      //   break
       default:
         throw new Error("Can't determine query type")
     }

@@ -1,0 +1,119 @@
+query OrgReposAgExtended_v3(
+  $organization: String!
+  $pageSize: Int
+  $after: String
+) {
+  organization(login: $organization) {
+    repositories(
+      first: $pageSize
+      after: $after
+      orderBy: { field: STARGAZERS, direction: DESC }
+    ) {
+      totalCount
+      pageInfo {
+        startCursor
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          ...RepoFieldsFragment_v3
+        }
+      }
+    }
+  }
+}
+
+fragment IssueFragment_v3 on Issue {
+  id
+  title
+  url
+  number
+  state
+  createdAt
+  closedAt
+  lastEditedAt
+}
+
+fragment PullRequestFragment_v3 on PullRequest {
+  title
+  isDraft
+  url
+  state
+  number
+}
+
+fragment GitActionFragment_v3 on GitActor {
+  date
+  email
+  name
+}
+
+fragment StatusFragment_v3 on Status {
+  id
+  commit {
+    id
+  }
+}
+
+fragment CommitFragment_v3 on Commit {
+  author {
+    ...GitActionFragment_v3
+  }
+  status {
+    ...StatusFragment_v3
+  }
+  message
+  pushedDate
+  committedDate
+}
+
+fragment RepoFieldsFragment_v3 on Repository {
+  repositoryName: name
+  id
+  url
+  descriptionHTML
+  updatedAt
+  stargazers {
+    totalCount
+  }
+  forks {
+    totalCount
+  }
+  issues(states: [OPEN]) {
+    totalCount
+  }
+  pullRequests(states: [OPEN]) {
+    totalCount
+  }
+  openPrs: pullRequests(states: [OPEN]) {
+    totalCount
+  }
+  lastPr: pullRequests(last: 1) {
+    nodes {
+      ...PullRequestFragment_v3
+    }
+  }
+  lastIssue: issues(last: 1) {
+    edges {
+      node {
+        ...IssueFragment_v3
+      }
+    }
+  }
+  lastPushToDefaultBranch: defaultBranchRef {
+    name
+    target {
+      ... on Commit {
+        history(first: 1) {
+          edges {
+            node {
+              ...CommitFragment_v3
+            }
+          }
+        }
+      }
+    }
+  }
+}

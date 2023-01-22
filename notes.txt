@@ -1,0 +1,17 @@
+https://gist.github.com/obahareth/d974afa16ac84182abc293b306e25928
+
+git add action.yml index.js node_modules/* package.json package-lock.json README.md
+git commit -m "My first action is ready"
+git tag -a -m "My first action release" v1.1
+git push --follow-tags
+
+fragment LastIssueFragment on PullRequestConnection {
+  id
+  title
+  url
+  number
+  state
+  createdAt
+  closedAt
+  lastEditedAt
+}

@@ -1,6 +1,6 @@
 schema: https://docs.github.com/public/schema.docs.graphql
 # file mask for graphql query files
-documents: ./**/*.graphql
+documents: ./src/action/graphql/*.graphql
 generates:
   ./src/generated/graphql.sdk.ts: # output typescript file path
     plugins:

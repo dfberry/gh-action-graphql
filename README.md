@@ -12,7 +12,8 @@ Get GraphQL data in action.
 
 Query selected to run. Default is `whoami`. Other options include:
 
-* `org_repos`: Defaults to `Azure-Samples` org. Use `github_org` input to set a different org.
+* `org_repos`: Defaults to `Azure-Samples` org. Use `github_org` input to set a different org. Uses v2 query.
+* `org_repos_extended`: Include last pr, commit, issue. Uses v3 query.
 
 ### `github_org`
 

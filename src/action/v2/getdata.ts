@@ -1,10 +1,10 @@
 /* eslint no-console: 0 */ // --> OFF
 import {
   MyRepoFieldsFragment,
-  OrgReposAgQueryVariables,
+  OrgReposAg_V2QueryVariables,
   Sdk
-} from './generated/graphql.sdk'
-import { waitfor } from './utils'
+} from '../../generated/graphql.sdk'
+import { waitfor } from '../utils/utils'
 export async function gitHubGraphQLWhoAmI(
   sdk: Sdk,
   personal_access_token: string
@@ -30,7 +30,7 @@ export async function gitHubGraphQLOrgReposAg(
 ): Promise<MyRepoFieldsFragment[]> {
   if (!personal_access_token)
     throw new Error('gitHubGraphQLOrgRepos::missing pat')
-  const variables: OrgReposAgQueryVariables = {
+  const variables: OrgReposAg_V2QueryVariables = {
     organization: org_name,
     pageSize: page_size,
     after: null
@@ -51,7 +51,7 @@ export async function gitHubGraphQLOrgReposAg(
     //   variables.pageSize = max_data - currentData
     // }
 
-    const data = await sdk.OrgReposAg(variables, requestHeaders)
+    const data = await sdk.OrgReposAg_v2(variables, requestHeaders)
 
     // Get repos
     if (data?.organization?.repositories?.edges) {

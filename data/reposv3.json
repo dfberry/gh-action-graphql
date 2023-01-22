@@ -1,0 +1,713 @@
+{
+    "data": {
+      "organization": {
+        "repositories": {
+          "totalCount": 2128,
+          "pageInfo": {
+            "startCursor": "Y3Vyc29yOnYyOpLNBcLOB9Ef4Q==",
+            "hasNextPage": true,
+            "endCursor": "Y3Vyc29yOnYyOpLNAUbODvt_Rw=="
+          },
+          "edges": [
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNBcLOB9Ef4Q==",
+              "node": {
+                "repositoryName": "cognitive-services-speech-sdk",
+                "id": "MDEwOlJlcG9zaXRvcnkxMzExNDU2OTc=",
+                "url": "https://github.com/Azure-Samples/cognitive-services-speech-sdk",
+                "descriptionHTML": "<div>Sample code for the Microsoft Cognitive Services Speech SDK</div>",
+                "updatedAt": "2023-01-21T05:09:50Z",
+                "stargazers": {
+                  "totalCount": 1474
+                },
+                "forks": {
+                  "totalCount": 1375
+                },
+                "issues": {
+                  "totalCount": 35
+                },
+                "openPrs": {
+                  "totalCount": 23
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "[batch] remove outdated quickstarts",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/cognitive-services-speech-sdk/pull/1800",
+                      "state": "MERGED",
+                      "number": 1800
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "I_kwDOB9Ef4c5cf7ei",
+                        "title": "STT: Phrase List in English not working as expected with names",
+                        "url": "https://github.com/Azure-Samples/cognitive-services-speech-sdk/issues/1806",
+                        "number": 1806,
+                        "state": "OPEN",
+                        "createdAt": "2023-01-21T18:15:27Z",
+                        "closedAt": null,
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "master",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2023-01-12T09:12:01.000+01:00",
+                              "email": "42998057+chlandsi@users.noreply.github.com",
+                              "name": "Christian Landsiedel"
+                            },
+                            "status": null,
+                            "message": "[batch] remove outdated quickstarts (#1800)",
+                            "pushedDate": "2023-01-12T08:12:06Z",
+                            "committedDate": "2023-01-12T08:12:01Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNBGnOB89Pag==",
+              "node": {
+                "repositoryName": "active-directory-aspnetcore-webapp-openidconnect-v2",
+                "id": "MDEwOlJlcG9zaXRvcnkxMzEwMjY3OTQ=",
+                "url": "https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2",
+                "descriptionHTML": "<div>An ASP.NET Core Web App which lets sign-in users (including in your org, many orgs, orgs + personal accounts, sovereign clouds) and call Web APIs (including Microsoft Graph)</div>",
+                "updatedAt": "2023-01-20T15:30:23Z",
+                "stargazers": {
+                  "totalCount": 1129
+                },
+                "forks": {
+                  "totalCount": 844
+                },
+                "issues": {
+                  "totalCount": 10
+                },
+                "openPrs": {
+                  "totalCount": 5
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "Aremo ms/sample4 3 basher",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/pull/656",
+                      "state": "MERGED",
+                      "number": 656
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "I_kwDOB89Pas5bjqlA",
+                        "title": "OAuth2 Authorization code was already redeemed please retry with a new valid code or use an existing refresh token",
+                        "url": "https://github.com/Azure-Samples/active-directory-aspnetcore-webapp-openidconnect-v2/issues/664",
+                        "number": 664,
+                        "state": "OPEN",
+                        "createdAt": "2023-01-17T09:48:51Z",
+                        "closedAt": null,
+                        "lastEditedAt": "2023-01-17T23:18:35Z"
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "master",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2022-12-19T16:16:21.000-05:00",
+                              "email": "85962119+aremo-ms@users.noreply.github.com",
+                              "name": "Alex Remo"
+                            },
+                            "status": null,
+                            "message": "Aremo ms/sample4 3 basher (#656)\n\n* slightly updated sample.json to meet new code generator format + enabled tenant validation in startup\r\n\r\n* working on BASHER\r\n\r\n* added allowed tenants list to appsettings.json\r\n\r\n* added PS items to solution\r\n\r\n* updated readme for validation of tenants\r\n\r\n* reverted sample.json\r\n\r\n* addressed review comments\r\n\r\n* slight update in readme.md\r\n\r\n* added client capabilities\r\n\r\n* Minor edits\r\n\r\n* More edits\r\n\r\n* addressed comments\r\n\r\n* Updated readme and Service/TodoListController.cs to have new scopes Read.User.Data and Write.User.Data\r\n\r\n* updated sample.json with Audience and manual steps for Service application\r\n\r\n* updated PowerShell scripts\r\n\r\n* reverted to back compatible URL names in sample.json + cleanup\r\n\r\n* latest packages (.NET 7.0), cleanup and config are from latest CodeGen. Added readme_steps for easer compare (will delete before release). Current status: todo list fails to display\r\n\r\n* bumped versions packages\r\n\r\n* ps files are generated by latest code gen, updated scope and permissions to latest trend. Appsettings.json was updated to keep graph info. Sample.json was updated to have latest code jen fileds (still need to be updated)\r\n\r\n* removed graph client creation and getting token. The client is obtained from middleware now\r\n\r\n* Setting some fundamentals stuff right ahead\r\n\r\n* BASHER logic and permissions, some cleanup as well\r\n\r\n* re-added reply url for service, renamed name of app registration to have \"_\" instead of \"-\"\r\n\r\n* readme file with initial \"How the code was created\" and updated \"About the code\", other sub-readme files\r\n\r\n* bumped all versions\r\n\r\n* fixing mismatch between readme and manual steps\r\n\r\n* updated readme\r\n\r\n* renamed AppId and Scope for Web API\r\n\r\n* formatting and textual edits\r\n\r\n* addressed comments\r\n\r\n* last update\r\n\r\n* updated\r\n\r\nCo-authored-by: Kalyan Krishna <kkrishna@microsoft.com>\r\nCo-authored-by: kalyankrishna1 <kalyankrishna1@gmail.com>",
+                            "pushedDate": "2022-12-19T21:16:23Z",
+                            "committedDate": "2022-12-19T21:16:21Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAwLOB8dwHQ==",
+              "node": {
+                "repositoryName": "blockchain",
+                "id": "MDEwOlJlcG9zaXRvcnkxMzA1MTA4Nzc=",
+                "url": "https://github.com/Azure-Samples/blockchain",
+                "descriptionHTML": "<div>Azure Blockchain Content and Samples</div>",
+                "updatedAt": "2023-01-15T12:04:47Z",
+                "stargazers": {
+                  "totalCount": 770
+                },
+                "forks": {
+                  "totalCount": 644
+                },
+                "issues": {
+                  "totalCount": 8
+                },
+                "openPrs": {
+                  "totalCount": 7
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "Bump Newtonsoft.Json from 10.0.3 to 13.0.2 in /blockchain-workbench/rest-api-samples/dotnet",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/blockchain/pull/262",
+                      "state": "OPEN",
+                      "number": 262
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "MDU6SXNzdWU5NzgyODM0MDU=",
+                        "title": "[ FEATURE REQUEST ] - Add IBC capability to Azure Blockchain",
+                        "url": "https://github.com/Azure-Samples/blockchain/issues/252",
+                        "number": 252,
+                        "state": "OPEN",
+                        "createdAt": "2021-08-24T16:34:30Z",
+                        "closedAt": null,
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "master",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2021-09-13T06:57:56.000-07:00",
+                              "email": "patricka@microsoft.com",
+                              "name": "Pat Altimore"
+                            },
+                            "status": null,
+                            "message": "Merge pull request #254 from Azure-Samples/caleteet-secupdate\n\nCaleteet secupdate",
+                            "pushedDate": "2021-09-13T13:57:58Z",
+                            "committedDate": "2021-09-13T13:57:56Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAiDOA5WBHQ==",
+              "node": {
+                "repositoryName": "Cognitive-Speech-TTS",
+                "id": "MDEwOlJlcG9zaXRvcnk2MDEyOTU2NQ==",
+                "url": "https://github.com/Azure-Samples/Cognitive-Speech-TTS",
+                "descriptionHTML": "<div>Microsoft Text-to-Speech API sample code in several languages, part of Cognitive Services.</div>",
+                "updatedAt": "2023-01-17T07:58:45Z",
+                "stargazers": {
+                  "totalCount": 544
+                },
+                "forks": {
+                  "totalCount": 416
+                },
+                "issues": {
+                  "totalCount": 10
+                },
+                "openPrs": {
+                  "totalCount": 2
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "Bump Newtonsoft.Json from 13.0.1 to 13.0.2 in /CustomVoice-API-Samples/CSharp",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/Cognitive-Speech-TTS/pull/252",
+                      "state": "OPEN",
+                      "number": 252
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "I_kwDOA5WBHc5ak52s",
+                        "title": "Sentences boundary does not Match audio",
+                        "url": "https://github.com/Azure-Samples/Cognitive-Speech-TTS/issues/255",
+                        "number": 255,
+                        "state": "OPEN",
+                        "createdAt": "2023-01-04T21:50:36Z",
+                        "closedAt": null,
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "master",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2023-01-21T06:50:27.000+08:00",
+                              "email": "szhao@microsoft.com",
+                              "name": "szhaomsft"
+                            },
+                            "status": null,
+                            "message": "Update README.md",
+                            "pushedDate": "2023-01-20T22:50:29Z",
+                            "committedDate": "2023-01-20T22:50:27Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAabOCfXHfg==",
+              "node": {
+                "repositoryName": "Serverless-microservices-reference-architecture",
+                "id": "MDEwOlJlcG9zaXRvcnkxNjcxMDIzMzQ=",
+                "url": "https://github.com/Azure-Samples/Serverless-microservices-reference-architecture",
+                "descriptionHTML": "<div>This reference architecture walks you through the decision-making process involved in designing, developing, and delivering a serverless application using a microservices architecture through hands-on instructions for configuring and deploying all of the architecture's components along the way. The goal is to provide practical hands-on experience in working with several Azure services and the technologies that effectively use them in a cohesive and unified way to build a serverless-based microservices architecture.</div>",
+                "updatedAt": "2023-01-17T21:29:40Z",
+                "stargazers": {
+                  "totalCount": 422
+                },
+                "forks": {
+                  "totalCount": 211
+                },
+                "issues": {
+                  "totalCount": 7
+                },
+                "openPrs": {
+                  "totalCount": 19
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "Bump json5, @vue/cli-plugin-babel, @vue/cli-plugin-eslint and @vue/cli-service in /web/serverless-microservices-web",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/Serverless-microservices-reference-architecture/pull/98",
+                      "state": "OPEN",
+                      "number": 98
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "I_kwDOCfXHfs5C-CQL",
+                        "title": "Bicep: Add app settings to Functions and Static web app",
+                        "url": "https://github.com/Azure-Samples/Serverless-microservices-reference-architecture/issues/75",
+                        "number": 75,
+                        "state": "OPEN",
+                        "createdAt": "2022-02-03T21:12:03Z",
+                        "closedAt": null,
+                        "lastEditedAt": "2022-02-04T00:42:59Z"
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "main",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2022-01-11T17:18:58.000+13:00",
+                              "email": "dalars@microsoft.com",
+                              "name": "Daniel Larsen"
+                            },
+                            "status": null,
+                            "message": "Merge pull request #72 from Azure-Samples/refresh-functions-v3\n\nUpgrade functions to v3",
+                            "pushedDate": "2022-01-11T04:19:07Z",
+                            "committedDate": "2022-01-11T04:18:58Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAZbODXu87g==",
+              "node": {
+                "repositoryName": "modern-data-warehouse-dataops",
+                "id": "MDEwOlJlcG9zaXRvcnkyMjYyMTMxMDI=",
+                "url": "https://github.com/Azure-Samples/modern-data-warehouse-dataops",
+                "descriptionHTML": "<div>DataOps for the Modern Data Warehouse on Microsoft Azure. <a href=\"https://aka.ms/mdw-dataops\" rel=\"nofollow\">https://aka.ms/mdw-dataops</a>.</div>",
+                "updatedAt": "2023-01-13T09:33:32Z",
+                "stargazers": {
+                  "totalCount": 406
+                },
+                "forks": {
+                  "totalCount": 328
+                },
+                "issues": {
+                  "totalCount": 42
+                },
+                "openPrs": {
+                  "totalCount": 8
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "Sreedhar guda/583 grant acl update config",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/modern-data-warehouse-dataops/pull/602",
+                      "state": "OPEN",
+                      "number": 602
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "I_kwDODXu87s5caqHP",
+                        "title": "Update lastUpdatedDatalake field in json",
+                        "url": "https://github.com/Azure-Samples/modern-data-warehouse-dataops/issues/600",
+                        "number": 600,
+                        "state": "OPEN",
+                        "createdAt": "2023-01-20T08:42:57Z",
+                        "closedAt": null,
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "main",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2023-01-11T09:06:59.000+01:00",
+                              "email": "46519584+ydaponte@users.noreply.github.com",
+                              "name": "Yennifer Santos"
+                            },
+                            "status": null,
+                            "message": "Merge pull request #574 from Azure-Samples/ydaponte/fix-idempotency-external-ds\n\nFix external source script and correct ReadMe file",
+                            "pushedDate": "2023-01-11T08:07:01Z",
+                            "committedDate": "2023-01-11T08:06:59Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAZLOAXwl4Q==",
+              "node": {
+                "repositoryName": "Azure-MachineLearning-DataScience",
+                "id": "MDEwOlJlcG9zaXRvcnkyNDkxMzM3Nw==",
+                "url": "https://github.com/Azure-Samples/Azure-MachineLearning-DataScience",
+                "descriptionHTML": "<div></div>",
+                "updatedAt": "2023-01-08T05:34:43Z",
+                "stargazers": {
+                  "totalCount": 402
+                },
+                "forks": {
+                  "totalCount": 363
+                },
+                "issues": {
+                  "totalCount": 4
+                },
+                "openPrs": {
+                  "totalCount": 11
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "fix typos in windows DSVM readme",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/Azure-MachineLearning-DataScience/pull/57",
+                      "state": "OPEN",
+                      "number": 57
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "MDU6SXNzdWU0MDI5NzgyNjA=",
+                        "title": "azureml module is unstable",
+                        "url": "https://github.com/Azure-Samples/Azure-MachineLearning-DataScience/issues/58",
+                        "number": 58,
+                        "state": "CLOSED",
+                        "createdAt": "2019-01-25T02:24:42Z",
+                        "closedAt": "2019-01-25T02:37:21Z",
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "master",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2019-06-28T13:09:52.000-07:00",
+                              "email": "routlaw@microsoft.com",
+                              "name": "Robert Outlaw"
+                            },
+                            "status": null,
+                            "message": "Update README.md",
+                            "pushedDate": "2019-06-28T20:09:55Z",
+                            "committedDate": "2019-06-28T20:09:52Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAX_OAw_mzQ==",
+              "node": {
+                "repositoryName": "MyDriving",
+                "id": "MDEwOlJlcG9zaXRvcnk1MTM3Mzc3Mw==",
+                "url": "https://github.com/Azure-Samples/MyDriving",
+                "descriptionHTML": "<div>Building IoT or Mobile solutions are fun and exciting. This year for Build, we wanted to show the amazing scenarios that can come together when these two are combined. So, we went and developed a sample application. MyDriving uses a wide range of Azure services to process and analyze car telemetry data for both real-time insights and long-term patterns and trends. The following features are supported in the current version of the mobile app.</div>",
+                "updatedAt": "2023-01-15T20:24:00Z",
+                "stargazers": {
+                  "totalCount": 383
+                },
+                "forks": {
+                  "totalCount": 269
+                },
+                "issues": {
+                  "totalCount": 37
+                },
+                "openPrs": {
+                  "totalCount": 11
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "[android] fix a tiny mistake in styles.xml",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/MyDriving/pull/607",
+                      "state": "OPEN",
+                      "number": 607
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "MDU6SXNzdWU0MzQyMzc5MDQ=",
+                        "title": ".\\deploy.ps1 \"CentralUS\" smhdinsight1234567  - always fails ",
+                        "url": "https://github.com/Azure-Samples/MyDriving/issues/609",
+                        "number": 609,
+                        "state": "OPEN",
+                        "createdAt": "2019-04-17T11:44:27Z",
+                        "closedAt": null,
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "master",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2019-10-07T11:55:53.000-07:00",
+                              "email": "33675759+docs-product@users.noreply.github.com",
+                              "name": "docs"
+                            },
+                            "status": null,
+                            "message": "Update README.md",
+                            "pushedDate": "2019-10-07T18:56:00Z",
+                            "committedDate": "2019-10-07T18:55:53Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAXzOBXaqxA==",
+              "node": {
+                "repositoryName": "raspberry-pi-web-simulator",
+                "id": "MDEwOlJlcG9zaXRvcnk5MTY2MzA0NA==",
+                "url": "https://github.com/Azure-Samples/raspberry-pi-web-simulator",
+                "descriptionHTML": "<div>Raspberry Pi web simulator. Demo address: </div>",
+                "updatedAt": "2022-12-28T06:04:08Z",
+                "stargazers": {
+                  "totalCount": 380
+                },
+                "forks": {
+                  "totalCount": 129
+                },
+                "issues": {
+                  "totalCount": 0
+                },
+                "openPrs": {
+                  "totalCount": 0
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "update readme to archive repository",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/raspberry-pi-web-simulator/pull/46",
+                      "state": "MERGED",
+                      "number": 46
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": []
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "source",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2022-10-03T15:42:38.000-07:00",
+                              "email": "ryanwinter@outlook.com",
+                              "name": "Ryan Winter"
+                            },
+                            "status": null,
+                            "message": "update readme (#46)",
+                            "pushedDate": "2022-10-03T22:42:39Z",
+                            "committedDate": "2022-10-03T22:42:38Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "cursor": "Y3Vyc29yOnYyOpLNAUbODvt_Rw==",
+              "node": {
+                "repositoryName": "Synapse",
+                "id": "MDEwOlJlcG9zaXRvcnkyNTEzNjMxNDM=",
+                "url": "https://github.com/Azure-Samples/Synapse",
+                "descriptionHTML": "<div>Samples for Azure Synapse Analytics</div>",
+                "updatedAt": "2023-01-17T14:44:22Z",
+                "stargazers": {
+                  "totalCount": 326
+                },
+                "forks": {
+                  "totalCount": 304
+                },
+                "issues": {
+                  "totalCount": 12
+                },
+                "openPrs": {
+                  "totalCount": 3
+                },
+                "lastPr": {
+                  "nodes": [
+                    {
+                      "title": "Add Spark environment yml",
+                      "isDraft": false,
+                      "url": "https://github.com/Azure-Samples/Synapse/pull/156",
+                      "state": "MERGED",
+                      "number": 156
+                    }
+                  ]
+                },
+                "lastIssue": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "I_kwDODvt_R85WBLWe",
+                        "title": "Synapse Intelligent Cache is not working",
+                        "url": "https://github.com/Azure-Samples/Synapse/issues/155",
+                        "number": 155,
+                        "state": "OPEN",
+                        "createdAt": "2022-11-10T02:52:46Z",
+                        "closedAt": null,
+                        "lastEditedAt": null
+                      }
+                    }
+                  ]
+                },
+                "lastPushToDefaultBranch": {
+                  "name": "main",
+                  "target": {
+                    "history": {
+                      "edges": [
+                        {
+                          "node": {
+                            "author": {
+                              "date": "2023-01-14T12:00:29.000+01:00",
+                              "email": "jovanpop@microsoft.com",
+                              "name": "Jovan Popovic (MSFT)"
+                            },
+                            "status": null,
+                            "message": "Delete _",
+                            "pushedDate": "2023-01-14T11:00:29Z",
+                            "committedDate": "2023-01-14T11:00:29Z"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }

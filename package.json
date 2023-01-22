@@ -3,14 +3,14 @@
   "version": "1.14.0",
   "private": true,
   "description": "TypeScript template action",
-  "main": "dist/main.js",
+  "main": "dist/action/main.js",
   "scripts": {
     "clean": "rm -rf dist && rm -rf package && rm -rf ./src/generated",
-    "build": "npm run clean && npm run build:format:fix && npm run build:lint && npm run build:sdk && npm run build:tsc",
+    "build": "npm run clean && npm run build:format:fix && npm run build:sdk && npm run build:lint  && npm run build:tsc",
     "build:tsc": "tsc",
     "build:sdk": "npm run codegen",
-    "build:format:fix": "prettier --write ./src/**/*.ts",
-    "Build:format:check": "prettier --check ./src/**/*.ts",
+    "build:format:fix": "prettier --write ./src",
+    "Build:format:check": "prettier --check ./src",
     "build:lint": "eslint src/**/*.ts",
     "package": "npm run build && ncc build -o package --no-cache --source-map --license licenses.txt",
     "test": "npm run build && jest --detectOpenHandles",
@@ -23,6 +23,9 @@
   },
   "keywords": [
     "actions",
+    "graphql",
+    "github",
+    "repository",
     "node",
     "setup"
   ],

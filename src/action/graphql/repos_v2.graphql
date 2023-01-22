@@ -1,0 +1,42 @@
+query OrgReposAg_v2($organization: String!, $pageSize: Int, $after: String) {
+  organization(login: $organization) {
+    repositories(
+      first: $pageSize
+      after: $after
+      orderBy: { field: STARGAZERS, direction: DESC }
+    ) {
+      totalCount
+      pageInfo {
+        startCursor
+        hasNextPage
+        endCursor
+      }
+      edges {
+        cursor
+        node {
+          ...MyRepoFields
+        }
+      }
+    }
+  }
+}
+
+fragment MyRepoFields on Repository {
+  repositoryName: name
+  id
+  url
+  descriptionHTML
+  updatedAt
+  stargazers {
+    totalCount
+  }
+  forks {
+    totalCount
+  }
+  issues(states: [OPEN]) {
+    totalCount
+  }
+  pullRequests(states: [OPEN]) {
+    totalCount
+  }
+}

@@ -1,4 +1,4 @@
-query WhoAmI{
+query WhoAmI {
   viewer {
     ...myUserFields
   }
