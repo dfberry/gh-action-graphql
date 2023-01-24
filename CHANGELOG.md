@@ -1,0 +1,42 @@
+# 1.14.1
+
+* Node 18 
+  * Added notes about how to publish action
+
+    ```
+    git add action.yml index.js node_modules/* package.json package-lock.json README.md
+    git commit -m "My first action is ready"
+    git tag -a -m "My first action release" v1.1
+    git push --follow-tags
+    ```
+
+  * When I updated to Node 18, ncc failed with the following error which needed an env param in package.json script to fix. 
+  
+    ```json
+    "package": "npm run build && NODE_OPTIONS='--openssl-legacy-provider' ncc build -o package --no-cache --source-map --license licenses.txt",
+    ```
+
+    ```error
+    ncc: Version 0.31.1
+    ncc: Compiling file index.js into CJS
+    node:internal/crypto/hash:71
+    this[kHandle] = new _Hash(algorithm, xofLen);
+                    ^
+
+    Error: error:0308010C:digital envelope routines::unsupported
+        at new Hash (node:internal/crypto/hash:71:19)
+        at Object.createHash (node:crypto:133:10)
+        at BulkUpdateDecorator.hashFactory (/Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:1262958)
+        at BulkUpdateDecorator.update (/Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:1261761)
+        at OriginalSource.updateHash (/Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:1530933)
+        at NormalModule._initBuildHash (/Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:421196)
+        at handleParseResult (/Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:422270)
+        at /Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:423657
+        at processResult (/Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:419523)
+        at /Users/dina/repos/dfberry/4.src.github-actions/gh-action-graphql/node_modules/@vercel/ncc/dist/ncc/index.js.cache.js:37:420632 {
+    opensslErrorStack: [ 'error:03000086:digital envelope routines::initialization error' ],
+    library: 'digital envelope routines',
+    reason: 'unsupported',
+    code: 'ERR_OSSL_EVP_UNSUPPORTED'
+    }
+    ```
