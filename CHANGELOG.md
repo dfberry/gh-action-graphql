@@ -1,3 +1,7 @@
+# 1.14.2
+
+* Added v3 query to main
+
 # 1.14.1
 
 * Node 18 

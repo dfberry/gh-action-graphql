@@ -11,6 +11,7 @@ import {
 } from './utils/constants'
 import { GraphQLClient } from 'graphql-request'
 import { gitHubGraphQLWhoAmI, gitHubGraphQLOrgReposAg } from './v2/getdata'
+import { gitHubGraphQLOrgReposAgExtendedV3 } from './v3/getdata'
 
 import dotenv from 'dotenv'
 dotenv.config()
@@ -32,7 +33,6 @@ function getQueryType(str: string): QueryType {
   switch (str) {
     case 'whoami':
     case 'org_repos':
-      return str
     case 'org_repos_extended':
       return str
     default:
@@ -101,6 +101,23 @@ async function run(): Promise<unknown> {
           throw new Error('Org name is required')
         }
         data = await gitHubGraphQLOrgReposAg(
+          sdk,
+          envVars.pat,
+          envVars.orgName,
+          envVars.maxItems,
+          envVars.maxPageSize,
+          envVars.maxDelayForRateLimit
+        )
+        // output either data to file or environment
+        if (envVars.save_to_file === 'false') {
+          core.setOutput('data', JSON.stringify(data))
+        }
+        break
+      case 'org_repos_extended':
+        if (!envVars.orgName) {
+          throw new Error('Org name is required')
+        }
+        data = await gitHubGraphQLOrgReposAgExtendedV3(
           sdk,
           envVars.pat,
           envVars.orgName,

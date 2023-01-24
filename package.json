@@ -1,6 +1,6 @@
 {
   "name": "gh-action-graphql",
-  "version": "1.14.1",
+  "version": "1.14.2",
   "private": true,
   "description": "TypeScript template action",
   "main": "dist/action/main.js",

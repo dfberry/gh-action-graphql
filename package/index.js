@@ -50,13 +50,13 @@ const graphql_sdk_1 = __nccwpck_require__(7103);
 const constants_1 = __nccwpck_require__(4062);
 const graphql_request_1 = __nccwpck_require__(2476);
 const getdata_1 = __nccwpck_require__(9518);
+const getdata_2 = __nccwpck_require__(2994);
 const dotenv_1 = __importDefault(__nccwpck_require__(2437));
 dotenv_1.default.config();
 function getQueryType(str) {
     switch (str) {
         case 'whoami':
         case 'org_repos':
-            return str;
         case 'org_repos_extended':
             return str;
         default:
@@ -115,6 +115,16 @@ function run() {
                         throw new Error('Org name is required');
                     }
                     data = yield (0, getdata_1.gitHubGraphQLOrgReposAg)(sdk, envVars.pat, envVars.orgName, envVars.maxItems, envVars.maxPageSize, envVars.maxDelayForRateLimit);
+                    // output either data to file or environment
+                    if (envVars.save_to_file === 'false') {
+                        core.setOutput('data', JSON.stringify(data));
+                    }
+                    break;
+                case 'org_repos_extended':
+                    if (!envVars.orgName) {
+                        throw new Error('Org name is required');
+                    }
+                    data = yield (0, getdata_2.gitHubGraphQLOrgReposAgExtendedV3)(sdk, envVars.pat, envVars.orgName, envVars.maxItems, envVars.maxPageSize, envVars.maxDelayForRateLimit);
                     // output either data to file or environment
                     if (envVars.save_to_file === 'false') {
                         core.setOutput('data', JSON.stringify(data));
@@ -291,6 +301,92 @@ rate_limit_ms) {
     });
 }
 exports.gitHubGraphQLOrgReposAg = gitHubGraphQLOrgReposAg;
+
+
+/***/ }),
+
+/***/ 2994:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.gitHubGraphQLOrgReposAgExtendedV3 = void 0;
+const utils_1 = __nccwpck_require__(7617);
+/**
+ * Org Repos extended (last commit, pr, issue)
+ * @param sdk
+ * @param personal_access_token
+ * @param org_name such as 'Azure-samples'
+ * @max_data how many repos to return, -1 means all
+ * @page_size 100 items max for GiHub
+ * @rate_limit_ms impose rate limit for query
+ * @returns
+ */
+function gitHubGraphQLOrgReposAgExtendedV3(sdk, personal_access_token, org_name, max_data, // Number of repos to return in total, -1 means all data
+page_size, // Max page size for GitHub
+rate_limit_ms) {
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+    return __awaiter(this, void 0, void 0, function* () {
+        // list of repos
+        if (!personal_access_token)
+            throw new Error('gitHubGraphQLOrgRepos::missing pat');
+        const variables = {
+            organization: org_name,
+            pageSize: page_size,
+            after: null
+        };
+        const requestHeaders = {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${personal_access_token}`
+        };
+        let hasNextPage = true;
+        const repos = [];
+        do {
+            console.log(`variables = ${JSON.stringify(variables)}`);
+            // Adjust page size to return correct number
+            // if (currentData + page_size > max_data) {
+            //   variables.pageSize = max_data - currentData
+            // }
+            const data = yield sdk.OrgReposAgExtended_v3(variables, requestHeaders);
+            // Get repos
+            if ((_b = (_a = data === null || data === void 0 ? void 0 : data.organization) === null || _a === void 0 ? void 0 : _a.repositories) === null || _b === void 0 ? void 0 : _b.edges) {
+                const flattenEdge = data === null || data === void 0 ? void 0 : data.organization.repositories.edges.map((edge) => edge === null || edge === void 0 ? void 0 : edge.node);
+                repos.push(...flattenEdge);
+                // Manage cursor for next page
+                hasNextPage =
+                    ((_c = data.organization) === null || _c === void 0 ? void 0 : _c.repositories.pageInfo.hasNextPage) !== undefined
+                        ? (_d = data.organization) === null || _d === void 0 ? void 0 : _d.repositories.pageInfo.hasNextPage
+                        : false;
+                console.log(`hasNextPage ${hasNextPage}`);
+                variables.after =
+                    ((_g = (_f = (_e = data === null || data === void 0 ? void 0 : data.organization) === null || _e === void 0 ? void 0 : _e.repositories) === null || _f === void 0 ? void 0 : _f.pageInfo) === null || _g === void 0 ? void 0 : _g.endCursor) !== undefined &&
+                        ((_k = (_j = (_h = data === null || data === void 0 ? void 0 : data.organization) === null || _h === void 0 ? void 0 : _h.repositories) === null || _j === void 0 ? void 0 : _j.pageInfo) === null || _k === void 0 ? void 0 : _k.endCursor) !== null
+                        ? (_o = (_m = (_l = data === null || data === void 0 ? void 0 : data.organization) === null || _l === void 0 ? void 0 : _l.repositories) === null || _m === void 0 ? void 0 : _m.pageInfo) === null || _o === void 0 ? void 0 : _o.endCursor
+                        : undefined;
+                // rate limit - TBD: Fix this
+                if (hasNextPage && rate_limit_ms > 0) {
+                    console.log(`waiting ${rate_limit_ms}`);
+                    yield (0, utils_1.waitfor)(rate_limit_ms);
+                }
+            }
+            else {
+                console.log(`edges not returned`);
+            }
+        } while (hasNextPage);
+        return repos;
+    });
+}
+exports.gitHubGraphQLOrgReposAgExtendedV3 = gitHubGraphQLOrgReposAgExtendedV3;
 
 
 /***/ }),
