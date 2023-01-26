@@ -4,6 +4,8 @@
 * Added GraphQL comments to GraphQL schemas
 * Fix build error with legacy dependencies "git install --legacy-peer-deps
 * Removed old ./dist/main
+* TBD: conflicing dependencies
+    * Fix for now - 2 separate packages - 1 local and 1 build
 
 # 1.14.2
 
