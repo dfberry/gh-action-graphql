@@ -1,3 +1,10 @@
+"""
+{  
+  "organization": "azure-samples",
+  "pageSize": 50,
+  "after": null
+}
+"""
 query OrgReposAg_v2($organization: String!, $pageSize: Int, $after: String) {
   organization(login: $organization) {
     repositories(
