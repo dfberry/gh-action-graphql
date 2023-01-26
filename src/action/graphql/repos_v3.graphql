@@ -42,6 +42,9 @@ fragment PullRequestFragment_v3 on PullRequest {
   url
   state
   number
+  mergedAt
+  closedAt
+  createdAt
 }
 
 fragment GitActionFragment_v3 on GitActor {

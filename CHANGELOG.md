@@ -1,3 +1,7 @@
+# 1.14.3
+
+* Expanded PullRequestFragment_v3 to include dates
+
 # 1.14.2
 
 * Added v3 query to main

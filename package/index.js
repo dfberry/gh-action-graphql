@@ -3222,6 +3222,9 @@ exports.PullRequestFragment_V3FragmentDoc = (0, graphql_tag_1.default) `
   url
   state
   number
+  mergedAt
+  closedAt
+  createdAt
 }
     `;
 exports.IssueFragment_V3FragmentDoc = (0, graphql_tag_1.default) `
