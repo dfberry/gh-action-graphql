@@ -5,12 +5,10 @@
   "description": "TypeScript template action",
   "main": "dist/action/main.js",
   "scripts": {
-    "clean": "rm -rf dist && rm -rf package && rm -rf ./src/generated",
     "build": "npm run build:sdk && npm run build:tsc",
     "build:tsc": "tsc",
     "build:sdk": "npm run codegen",
     "package": "npm run build && NODE_OPTIONS='--openssl-legacy-provider' ncc build -o package --no-cache --source-map --license licenses.txt",
-    "all": "npm run build && npm run format && npm run build:lint && npm run package && npm test",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "repository": {
