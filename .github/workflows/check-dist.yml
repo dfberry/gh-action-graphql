@@ -33,6 +33,7 @@ jobs:
 
       - name: Rebuild the dist/ directory
         run: |
+          npm run codegen
           npm run build
           npm run package
 
