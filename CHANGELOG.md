@@ -1,6 +1,9 @@
 # 1.14.3
 
 * Expanded PullRequestFragment_v3 to include dates
+* Added GraphQL comments to GraphQL schemas
+* Fix build error with legacy dependencies "git install --legacy-peer-deps
+* Removed old ./dist/main
 
 # 1.14.2
 
