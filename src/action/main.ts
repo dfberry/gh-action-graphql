@@ -12,11 +12,12 @@ import {
 import { GraphQLClient } from 'graphql-request'
 import { gitHubGraphQLWhoAmI, gitHubGraphQLOrgReposAg } from './v2/getdata'
 import { gitHubGraphQLOrgReposAgExtendedV3 } from './v3/getdata'
+import { version } from '../../package.json';
 
 import dotenv from 'dotenv'
 dotenv.config()
 
-type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended'
+type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended' | 'status'
 
 type IncomingVariables = {
   pat: string // personal access token
@@ -31,6 +32,7 @@ type IncomingVariables = {
 
 function getQueryType(str: string): QueryType {
   switch (str) {
+    case 'status':
     case 'whoami':
     case 'org_repos':
     case 'org_repos_extended':
@@ -92,6 +94,8 @@ async function run(): Promise<unknown> {
     let data = undefined
 
     switch (envVars.querytype) {
+      case 'status':
+        core.setOutput('data', JSON.stringify(version))
       case 'whoami':
         data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
         core.setOutput('data', JSON.stringify(data))

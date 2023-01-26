@@ -1,3 +1,6 @@
+# 1.14.4
+* Add 'status' as query type - returns package.json version
+
 # 1.14.3
 
 * Expanded PullRequestFragment_v3 to include dates
@@ -6,6 +9,7 @@
 * Removed old ./dist/main
 * TBD: conflicing dependencies
     * Fix for now - 2 separate packages - 1 local and 1 build
+
 
 # 1.14.2
 
