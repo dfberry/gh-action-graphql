@@ -3,7 +3,7 @@
   "version": "1.14.4",
   "private": true,
   "description": "TypeScript template action",
-  "main": "dist/action/main.js",
+  "main": "dist/src/action/main.js",
   "scripts": {
     "build": "tsc",
     "build:tsc": "tsc && echo 'done'",
