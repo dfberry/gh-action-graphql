@@ -2,20 +2,16 @@
 import * as core from '@actions/core'
 import { promises as fs } from 'fs'
 import path from 'path'
-import { getSdk, Sdk } from '../generated/graphql.sdk'
 import {
   DEFAULT_SAVED_FILE_NAME,
   GITHUB_GRAPHQL,
   TIME_5_SECONDS,
   DEFAULT_PAGE_SIZE
 } from './utils/constants'
-import { GraphQLClient } from 'graphql-request'
-import { gitHubGraphQLWhoAmI, gitHubGraphQLOrgReposAg } from './v2/getdata'
-import { gitHubGraphQLOrgReposAgExtendedV3 } from './v3/getdata'
-import { version } from '../../package.json';
+import { version } from '../../package.json'
 
-import dotenv from 'dotenv'
-dotenv.config()
+// import dotenv from 'dotenv'
+// dotenv.config()
 
 type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended' | 'status'
 
@@ -88,7 +84,7 @@ async function run(): Promise<unknown> {
       throw new Error('GitHub Personal Access Token is required')
     }
 
-    const sdk: Sdk = getSdk(new GraphQLClient(GITHUB_GRAPHQL))
+    //const sdk: Sdk = getSdk(new GraphQLClient(GITHUB_GRAPHQL))
     console.log(`Ready to query`)
 
     let data = undefined
@@ -97,21 +93,21 @@ async function run(): Promise<unknown> {
       case 'status':
         core.setOutput('data', JSON.stringify(version))
       case 'whoami':
-        data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
-        core.setOutput('data', JSON.stringify(data))
+        // data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
+        // core.setOutput('data', JSON.stringify(data))
         break
       case 'org_repos':
         if (!envVars.orgName) {
           throw new Error('Org name is required')
         }
-        data = await gitHubGraphQLOrgReposAg(
-          sdk,
-          envVars.pat,
-          envVars.orgName,
-          envVars.maxItems,
-          envVars.maxPageSize,
-          envVars.maxDelayForRateLimit
-        )
+        // data = await gitHubGraphQLOrgReposAg(
+        //   sdk,
+        //   envVars.pat,
+        //   envVars.orgName,
+        //   envVars.maxItems,
+        //   envVars.maxPageSize,
+        //   envVars.maxDelayForRateLimit
+        // )
         // output either data to file or environment
         if (envVars.save_to_file === 'false') {
           core.setOutput('data', JSON.stringify(data))
@@ -121,14 +117,14 @@ async function run(): Promise<unknown> {
         if (!envVars.orgName) {
           throw new Error('Org name is required')
         }
-        data = await gitHubGraphQLOrgReposAgExtendedV3(
-          sdk,
-          envVars.pat,
-          envVars.orgName,
-          envVars.maxItems,
-          envVars.maxPageSize,
-          envVars.maxDelayForRateLimit
-        )
+        // data = await gitHubGraphQLOrgReposAgExtendedV3(
+        //   sdk,
+        //   envVars.pat,
+        //   envVars.orgName,
+        //   envVars.maxItems,
+        //   envVars.maxPageSize,
+        //   envVars.maxDelayForRateLimit
+        // )
         // output either data to file or environment
         if (envVars.save_to_file === 'false') {
           core.setOutput('data', JSON.stringify(data))
