@@ -95,6 +95,7 @@ async function run(): Promise<unknown> {
       case 'whoami':
         // data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
         // core.setOutput('data', JSON.stringify(data))
+        data = "whoami"
         break
       case 'org_repos':
         if (!envVars.orgName) {
@@ -112,6 +113,7 @@ async function run(): Promise<unknown> {
         if (envVars.save_to_file === 'false') {
           core.setOutput('data', JSON.stringify(data))
         }
+        data = "org_repos"
         break
       case 'org_repos_extended':
         if (!envVars.orgName) {
