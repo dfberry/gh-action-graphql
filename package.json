@@ -1,6 +1,6 @@
 {
   "name": "gh-action-graphql",
-  "version": "1.14.3",
+  "version": "1.14.5",
   "private": false,
   "description": "TypeScript template action",
   "main": "dist/src/action/main.js",
@@ -12,7 +12,7 @@
     "package": "ncc build -o package --no-cache --source-map --license licenses.txt",
     "package2": "NODE_OPTIONS='--openssl-legacy-provider' ncc build -o package --no-cache --source-map --license licenses.txt",
     "test": "jest --detectOpenHandles",
-    "all": "npm run clean && npm run build && npm run test && npm run package"
+    "all": "npm run clean && npm run build && npm run test && npm run package2"
   },
   "repository": {
     "type": "git",

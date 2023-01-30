@@ -5,7 +5,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.14.3","private":false,"description":"TypeScript template action","main":"dist/src/action/main.js","scripts":{"clean":"rm -rf dist && rm -rf package && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:tsc","build:tsc":"tsc","build:format:fix":"prettier --write ./src","package":"ncc build -o package --no-cache --source-map --license licenses.txt","package2":"NODE_OPTIONS=\'--openssl-legacy-provider\' ncc build -o package --no-cache --source-map --license licenses.txt","test":"jest --detectOpenHandles","all":"npm run clean && npm run build && npm run test && npm run package"},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["actions","graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@actions/core":"^1.10.0","@actions/github":"^5.1.1","dotenv":"^16.0.3"},"devDependencies":{"@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","jest":"^27.5.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","typescript":"^4.9.3"}}');
+module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.14.5","private":false,"description":"TypeScript template action","main":"dist/src/action/main.js","scripts":{"clean":"rm -rf dist && rm -rf package && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:tsc","build:tsc":"tsc","build:format:fix":"prettier --write ./src","package":"ncc build -o package --no-cache --source-map --license licenses.txt","package2":"NODE_OPTIONS=\'--openssl-legacy-provider\' ncc build -o package --no-cache --source-map --license licenses.txt","test":"jest --detectOpenHandles","all":"npm run clean && npm run build && npm run test && npm run package2"},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["actions","graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@actions/core":"^1.10.0","@actions/github":"^5.1.1","dotenv":"^16.0.3"},"devDependencies":{"@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","jest":"^27.5.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","typescript":"^4.9.3"}}');
 
 /***/ }),
 
@@ -115,6 +115,7 @@ function run() {
                 case 'whoami':
                     // data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
                     // core.setOutput('data', JSON.stringify(data))
+                    data = 'whoami';
                     break;
                 case 'org_repos':
                     if (!envVars.orgName) {
@@ -132,6 +133,7 @@ function run() {
                     if (envVars.save_to_file === 'false') {
                         core.setOutput('data', JSON.stringify(data));
                     }
+                    data = 'org_repos';
                     break;
                 case 'org_repos_extended':
                     if (!envVars.orgName) {
