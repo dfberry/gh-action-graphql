@@ -1,3 +1,7 @@
+# 1.14.8
+
+* update @diberry/github-magic:2.0.2 - break loop when cursor is empty
+
 # 1.14.7
 
 * `repos_extended`: log each iteration
