@@ -9,6 +9,12 @@ import {
   DEFAULT_PAGE_SIZE
 } from './utils/constants'
 import { version } from '../../package.json'
+import {
+  processActionReposEx,
+  processActionStatus,
+  processActionWhoAmI,
+  processActionRepos
+} from '../action/processor'
 
 // import dotenv from 'dotenv'
 // dotenv.config()
@@ -16,6 +22,7 @@ import { version } from '../../package.json'
 type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended' | 'status'
 
 type IncomingVariables = {
+  gitHubGraphQLUrl: string
   pat: string // personal access token
   orgName: string
   querytype: QueryType
@@ -41,6 +48,7 @@ function getQueryType(str: string): QueryType {
 function getVarsFromAction(): IncomingVariables {
   if (process.env.NODE_ENV === 'development') {
     return {
+      gitHubGraphQLUrl: process.env.gitHubGraphQLUrl || GITHUB_GRAPHQL,
       pat: process.env.github_personal_access_token || '',
       orgName: process.env.github_org || '',
       querytype: process.env.query_type as QueryType,
@@ -62,6 +70,7 @@ function getVarsFromAction(): IncomingVariables {
       parseInt(core.getInput('rate_limit_delay')) || TIME_5_SECONDS
 
     return {
+      gitHubGraphQLUrl: process.env.gitHubGraphQLUrl || GITHUB_GRAPHQL,
       pat: core.getInput('github_personal_access_token'),
       orgName: core.getInput('github_org') || GITHUB_GRAPHQL,
       querytype: getQueryType(core.getInput('query_type')),
@@ -84,31 +93,48 @@ async function run(): Promise<unknown> {
       throw new Error('GitHub Personal Access Token is required')
     }
 
-    //const sdk: Sdk = getSdk(new GraphQLClient(GITHUB_GRAPHQL))
     console.log(`Ready to query`)
 
     let data = undefined
 
     switch (envVars.querytype) {
       case 'status':
+        console.log(`querytype=status`)
         core.setOutput('data', JSON.stringify(version))
+        const sdkVersion = processActionStatus()
+        core.setOutput('data', JSON.stringify(sdkVersion))
       case 'whoami':
-        // data = await gitHubGraphQLWhoAmI(sdk, envVars.pat)
-        // core.setOutput('data', JSON.stringify(data))
+        console.log(`querytype=whoami`)
+        if (!envVars.pat) {
+          throw new Error('pat is required')
+        }
+        const paramsWhoAmI = {
+          pat: envVars.pat,
+          gitHubGraphQLUrl: envVars.gitHubGraphQLUrl
+        }
+        data = await processActionWhoAmI(paramsWhoAmI)
+        core.setOutput('data', JSON.stringify(data))
         data = 'whoami'
         break
       case 'org_repos':
+        console.log(`querytype=org_repos`)
+        if (!envVars.pat) {
+          throw new Error('pat is required')
+        }
         if (!envVars.orgName) {
           throw new Error('Org name is required')
         }
-        // data = await gitHubGraphQLOrgReposAg(
-        //   sdk,
-        //   envVars.pat,
-        //   envVars.orgName,
-        //   envVars.maxItems,
-        //   envVars.maxPageSize,
-        //   envVars.maxDelayForRateLimit
-        // )
+        if (!envVars.gitHubGraphQLUrl) {
+          throw new Error('gitHubGraphQLUrl is required')
+        }
+        data = await processActionRepos({
+          pat: envVars.pat,
+          gitHubGraphQLUrl: envVars.gitHubGraphQLUrl,
+          orgName: envVars.orgName,
+          maxItems: envVars.maxItems,
+          maxPageSize: envVars.maxPageSize,
+          maxDelayForRateLimit: envVars.maxDelayForRateLimit
+        })
         // output either data to file or environment
         if (envVars.save_to_file === 'false') {
           core.setOutput('data', JSON.stringify(data))
@@ -116,51 +142,45 @@ async function run(): Promise<unknown> {
         data = 'org_repos'
         break
       case 'org_repos_extended':
+        console.log(`querytype=org_repos_extended`)
+        if (!envVars.pat) {
+          throw new Error('pat is required')
+        }
         if (!envVars.orgName) {
           throw new Error('Org name is required')
         }
-        // data = await gitHubGraphQLOrgReposAgExtendedV3(
-        //   sdk,
-        //   envVars.pat,
-        //   envVars.orgName,
-        //   envVars.maxItems,
-        //   envVars.maxPageSize,
-        //   envVars.maxDelayForRateLimit
-        // )
+        if (!envVars.gitHubGraphQLUrl) {
+          throw new Error('gitHubGraphQLUrl is required')
+        }
+        data = await processActionReposEx({
+          pat: envVars.pat,
+          gitHubGraphQLUrl: envVars.gitHubGraphQLUrl,
+          orgName: envVars.orgName,
+          maxItems: envVars.maxItems,
+          maxPageSize: envVars.maxPageSize,
+          maxDelayForRateLimit: envVars.maxDelayForRateLimit
+        })
+
         // output either data to file or environment
         if (envVars.save_to_file === 'false') {
           core.setOutput('data', JSON.stringify(data))
         }
         break
-      // case 'org_repos_extended':
-      //   if (!envVars.orgName) {
-      //     throw new Error('Org name is required')
-      //   }
-      //   data = await gitHubGraphQLOrgReposAgV2(
-      //     sdk,
-      //     envVars.pat,
-      //     envVars.orgName,
-      //     envVars.maxItems,
-      //     envVars.maxPageSize,
-      //     envVars.maxDelayForRateLimit
-      //   )
-      //   // output either data to file or environment
-      //   if (envVars.save_to_file === 'false') {
-      //     core.setOutput('data', JSON.stringify(data))
-      //   }
-      //   break
       default:
         throw new Error("Can't determine query type")
     }
 
     // save data to file instead of blowing out GitHub Action memory
     if (envVars.save_to_file === 'true' && envVars.save_to_file_name) {
+      console.log(`save to file - yes: ${envVars.save_to_file_name}`)
       const dirFile: string = path.join(
         process.env.GITHUB_WORKSPACE as string,
         envVars.save_to_file_name
       )
       await fs.writeFile(dirFile, JSON.stringify(data), 'utf8')
       console.log(`Data output file written to ${dirFile}`)
+    } else {
+      console.log(`save to file - no`)
     }
 
     return data
