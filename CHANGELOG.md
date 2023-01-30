@@ -1,3 +1,7 @@
+# 1.14.9
+
+* update @diberry/github-magic@2.0.3 - break loop cursor and max items
+
 # 1.14.8
 
 * update @diberry/github-magic:2.0.2 - break loop when cursor is empty
