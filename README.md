@@ -27,6 +27,13 @@ Save output to file instead of output data to save runtime memory. Default is tr
 
 Output file name in root. Default is `graphql_data.json`.
 
+### `max_items`
+
+Number of items to retrieve. For `querytype` of `org_repos` or `org_repos_extended`, this determines how many items are in array. 
+
+* `-1`: all rows
+* If you set max to a number that is not a divisor or `max_page_size`, you will get more items than you requested due because that last page was fetched and returned.
+
 ### `max_page_size`
 
 Page size used in query, if query can return a page. Default is 100.
