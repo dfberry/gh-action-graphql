@@ -1,3 +1,7 @@
+# 1.14.7
+
+* `repos_extended`: log each iteration
+
 # 1.14.6
 
 * Fix main loop
