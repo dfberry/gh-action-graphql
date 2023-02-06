@@ -1,3 +1,7 @@
+# 1.15.0
+
+* update @diberry/github-magic@2.1.0 - more extended properties
+
 # 1.14.9
 
 * update @diberry/github-magic@2.0.3 - break loop cursor and max items
