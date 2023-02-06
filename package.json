@@ -35,7 +35,7 @@
     "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "@types/node": "^18.11.0",
+    "@types/node": "^18.11.19",
     "@vercel/ncc": "^0.31.1",
     "jest": "^27.5.1",
     "jest-mock-extended": "^3.0.1",
