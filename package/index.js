@@ -5,7 +5,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.14.7","private":false,"description":"TypeScript template action","main":"dist/src/action/main.js","scripts":{"clean":"rm -rf dist && rm -rf package && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:tsc","build:tsc":"tsc","build:format:fix":"prettier --write ./src","package":"ncc build -o package --no-cache --source-map --license licenses.txt","package2":"NODE_OPTIONS=\'--openssl-legacy-provider\' ncc build -o package --no-cache --source-map --license licenses.txt","test":"jest --detectOpenHandles","all":"npm run clean && npm run build && npm run test && npm run package2"},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["actions","graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@actions/core":"^1.10.0","@actions/github":"^5.1.1","@diberry/github-magic":"^2.0.2","dotenv":"^16.0.3"},"devDependencies":{"@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","jest":"^27.5.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","typescript":"^4.9.3"}}');
+module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.15.0","private":false,"description":"TypeScript template action","main":"dist/src/action/main.js","scripts":{"clean":"rm -rf dist && rm -rf package && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:tsc","build:tsc":"tsc","build:format:fix":"prettier --write ./src","package":"ncc build -o package --no-cache --source-map --license licenses.txt","package2":"NODE_OPTIONS=\'--openssl-legacy-provider\' ncc build -o package --no-cache --source-map --license licenses.txt","test":"jest --detectOpenHandles","all":"npm run clean && npm run build && npm run test && npm run package2"},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["actions","graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@actions/core":"^1.10.0","@actions/github":"^5.1.1","@diberry/github-magic":"^2.1.0","dotenv":"^16.0.3"},"devDependencies":{"@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","jest":"^27.5.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","typescript":"^4.9.3"}}');
 
 /***/ }),
 
@@ -13,7 +13,7 @@ module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.14.7","pri
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@diberry/github-magic","version":"2.0.3","private":false,"description":"TypeScript template action","main":"dist/src/sdk/main.js","files":["dist"],"scripts":{"clean":"rm -rf dist && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:sdk && npm run build:lint  && npm run build:tsc","build:tsc":"tsc","build:sdk":"npm run codegen","build:format:fix":"prettier --write ./src","build:lint":"eslint src/**/*.ts","test":"jest --detectOpenHandles","test:all":"npm run build && npm run test","all":"npm run clean && npm run build && npm test","codegen":"graphql-codegen --config codegen.yml","run:all":"node ./dist/src/sdk/runall.js","mgr:publish":"npm publish","mgr:unpublish":"npm unpublish @dfberry/github-magic@1.14.5","mgr:deprecate":"npm deprecate @dfberry/github-magic@1.14.5 \\"Use the latest version\\""},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@graphql-codegen/add":"^3.2.1","@graphql-codegen/typescript-graphql-request":"^4.5.8","@graphql-codegen/typescript-operations":"^2.5.8","axios":"^1.2.0","dotenv":"^16.0.3","graphql":"^16.6.0","graphql-request":"^5.0.0","isomorphic-fetch":"^3.0.0"},"devDependencies":{"@graphql-codegen/cli":"^2.15.0","@graphql-codegen/introspection":"^2.2.1","@graphql-codegen/typescript":"^2.8.3","@graphql-codegen/typescript-resolvers":"^2.7.8","@types/isomorphic-fetch":"^0.0.36","@types/jest":"^29.4.0","@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","eslint":"^8.32.0","eslint-plugin-github":"^4.6.0","eslint-plugin-jest":"^27.2.1","fetch-mock":"^9.11.0","fetch-mock-jest":"^1.5.1","jest":"^29.4.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","prettier":"2.5.1","ts-jest":"^29.0.5","ts-node":"^10.9.1","typescript":"^4.9.3"}}');
+module.exports = JSON.parse('{"name":"@diberry/github-magic","version":"2.1.0","private":false,"description":"TypeScript template action","main":"dist/src/sdk/main.js","files":["dist"],"scripts":{"clean":"rm -rf dist && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:sdk && npm run build:lint  && npm run build:tsc","build:tsc":"tsc","build:sdk":"npm run codegen","build:format:fix":"prettier --write ./src","build:lint":"eslint src/**/*.ts","test":"jest --detectOpenHandles","test:all":"npm run build && npm run test","all":"npm run clean && npm run build && npm test","codegen":"graphql-codegen --config codegen.yml","run:all":"node ./dist/src/sdk/runall.js","mgr:publish":"npm publish","mgr:unpublish":"npm unpublish @dfberry/github-magic@1.14.5","mgr:deprecate":"npm deprecate @dfberry/github-magic@1.14.5 \\"Use the latest version\\""},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@graphql-codegen/add":"^3.2.1","@graphql-codegen/typescript-graphql-request":"^4.5.8","@graphql-codegen/typescript-operations":"^2.5.8","axios":"^1.2.0","dotenv":"^16.0.3","graphql":"^16.6.0","graphql-request":"^5.0.0","isomorphic-fetch":"^3.0.0"},"devDependencies":{"@graphql-codegen/cli":"^2.15.0","@graphql-codegen/introspection":"^2.2.1","@graphql-codegen/typescript":"^2.8.3","@graphql-codegen/typescript-resolvers":"^2.7.8","@types/isomorphic-fetch":"^0.0.36","@types/jest":"^29.4.0","@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","eslint":"^8.32.0","eslint-plugin-github":"^4.6.0","eslint-plugin-jest":"^27.2.1","fetch-mock":"^9.11.0","fetch-mock-jest":"^1.5.1","jest":"^29.4.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","prettier":"2.5.1","ts-jest":"^29.0.5","ts-node":"^10.9.1","typescript":"^4.9.3"}}');
 
 /***/ }),
 
@@ -2088,10 +2088,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.IIssueClosedStateReason = exports.IIpAllowListForInstalledAppsEnabledSettingValue = exports.IIpAllowListEntryOrderField = exports.IIpAllowListEnabledSettingValue = exports.IIdentityProviderConfigurationState = exports.IGitSignatureState = exports.IGistPrivacy = exports.IGistOrderField = exports.IFundingPlatform = exports.IFileViewedState = exports.IEnterpriseUserDeployment = exports.IEnterpriseUserAccountMembershipRole = exports.IEnterpriseServerUserAccountsUploadSyncState = exports.IEnterpriseServerUserAccountsUploadOrderField = exports.IEnterpriseServerUserAccountOrderField = exports.IEnterpriseServerUserAccountEmailOrderField = exports.IEnterpriseServerInstallationOrderField = exports.IEnterpriseMembersCanMakePurchasesSettingValue = exports.IEnterpriseMembersCanCreateRepositoriesSettingValue = exports.IEnterpriseMemberOrderField = exports.IEnterpriseEnabledSettingValue = exports.IEnterpriseEnabledDisabledSettingValue = exports.IEnterpriseDefaultRepositoryPermissionSettingValue = exports.IEnterpriseAllowPrivateRepositoryForkingPolicyValue = exports.IEnterpriseAdministratorRole = exports.IEnterpriseAdministratorInvitationOrderField = exports.IDismissReason = exports.IDiscussionPollOptionOrderField = exports.IDiscussionOrderField = exports.IDiffSide = exports.IDeploymentStatusState = exports.IDeploymentState = exports.IDeploymentReviewState = exports.IDeploymentProtectionRuleType = exports.IDeploymentOrderField = exports.IDependencyGraphEcosystem = exports.IDefaultRepositoryPermissionField = exports.IContributionLevel = exports.IComparisonStatus = exports.ICommitContributionOrderField = exports.ICommentCannotUpdateReason = exports.ICommentAuthorAssociation = exports.ICollaboratorAffiliation = exports.ICheckStatusState = exports.ICheckRunType = exports.ICheckRunState = exports.ICheckConclusionState = exports.ICheckAnnotationLevel = exports.IAuditLogOrderField = exports.IActorType = void 0;
-exports.IProjectColumnPurpose = exports.IProjectCardState = exports.IProjectCardArchivedState = exports.IPinnedDiscussionPattern = exports.IPinnedDiscussionGradient = exports.IPinnableItemType = exports.IPatchStatus = exports.IPackageVersionOrderField = exports.IPackageType = exports.IPackageOrderField = exports.IPackageFileOrderField = exports.IOrganizationOrderField = exports.IOrganizationMigrationState = exports.IOrganizationMembersCanCreateRepositoriesSettingValue = exports.IOrganizationMemberRole = exports.IOrganizationInvitationType = exports.IOrganizationInvitationRole = exports.IOrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility = exports.IOrgUpdateMemberAuditEntryPermission = exports.IOrgUpdateDefaultRepositoryPermissionAuditEntryPermission = exports.IOrgRemoveOutsideCollaboratorAuditEntryReason = exports.IOrgRemoveOutsideCollaboratorAuditEntryMembershipType = exports.IOrgRemoveMemberAuditEntryReason = exports.IOrgRemoveMemberAuditEntryMembershipType = exports.IOrgRemoveBillingManagerAuditEntryReason = exports.IOrgEnterpriseOwnerOrderField = exports.IOrgCreateAuditEntryBillingPlan = exports.IOrgAddMemberAuditEntryPermission = exports.IOrderDirection = exports.IOperationType = exports.IOauthApplicationCreateAuditEntryState = exports.IOidcProviderType = exports.INotificationRestrictionSettingValue = exports.IMilestoneState = exports.IMilestoneOrderField = exports.IMigrationState = exports.IMigrationSourceType = exports.IMergeableState = exports.IMergeStateStatus = exports.IMergeCommitTitle = exports.IMergeCommitMessage = exports.IMannequinOrderField = exports.ILockReason = exports.ILanguageOrderField = exports.ILabelOrderField = exports.IIssueTimelineItemsItemType = exports.IIssueStateReason = exports.IIssueState = exports.IIssueOrderField = exports.IIssueCommentOrderField = void 0;
-exports.IRoleInOrganization = exports.IRequestableCheckStatusState = exports.IRepositoryVulnerabilityAlertState = exports.IRepositoryVulnerabilityAlertDependencyScope = exports.IRepositoryVisibility = exports.IRepositoryPrivacy = exports.IRepositoryPermission = exports.IRepositoryOrderField = exports.IRepositoryMigrationOrderField = exports.IRepositoryMigrationOrderDirection = exports.IRepositoryLockReason = exports.IRepositoryInvitationOrderField = exports.IRepositoryInteractionLimitOrigin = exports.IRepositoryInteractionLimitExpiry = exports.IRepositoryInteractionLimit = exports.IRepositoryContributionType = exports.IRepositoryAffiliation = exports.IReportedContentClassifiers = exports.IRepoRemoveMemberAuditEntryVisibility = exports.IRepoDestroyAuditEntryVisibility = exports.IRepoCreateAuditEntryVisibility = exports.IRepoChangeMergeSettingAuditEntryMergeType = exports.IRepoArchivedAuditEntryVisibility = exports.IRepoAddMemberAuditEntryVisibility = exports.IRepoAccessAuditEntryVisibility = exports.IReleaseOrderField = exports.IRefOrderField = exports.IReactionOrderField = exports.IReactionContent = exports.IPullRequestUpdateState = exports.IPullRequestTimelineItemsItemType = exports.IPullRequestState = exports.IPullRequestReviewState = exports.IPullRequestReviewEvent = exports.IPullRequestReviewDecision = exports.IPullRequestReviewCommentState = exports.IPullRequestOrderField = exports.IPullRequestMergeMethod = exports.IProjectV2ViewOrderField = exports.IProjectV2ViewLayout = exports.IProjectV2State = exports.IProjectV2OrderField = exports.IProjectV2ItemType = exports.IProjectV2ItemOrderField = exports.IProjectV2ItemFieldValueOrderField = exports.IProjectV2FieldType = exports.IProjectV2FieldOrderField = exports.IProjectTemplate = exports.IProjectState = exports.IProjectOrderField = void 0;
-exports.RepoExFragmentDoc = exports.CommitFragmentDoc = exports.StatusFragmentDoc = exports.GitActionFragmentDoc = exports.IssueFragmentDoc = exports.PrFragmentDoc = exports.RepoFragmentDoc = exports.IWorkflowRunOrderField = exports.IVerifiableDomainOrderField = exports.IUserStatusOrderField = exports.IUserBlockDuration = exports.ITrackedIssueStates = exports.ITopicSuggestionDeclineReason = exports.ITeamRole = exports.ITeamReviewAssignmentAlgorithm = exports.ITeamRepositoryOrderField = exports.ITeamPrivacy = exports.ITeamOrderField = exports.ITeamMembershipType = exports.ITeamMemberRole = exports.ITeamMemberOrderField = exports.ITeamDiscussionOrderField = exports.ITeamDiscussionCommentOrderField = exports.ISubscriptionState = exports.IStatusState = exports.IStarOrderField = exports.ISquashMergeCommitTitle = exports.ISquashMergeCommitMessage = exports.ISponsorshipPrivacy = exports.ISponsorshipOrderField = exports.ISponsorshipNewsletterOrderField = exports.ISponsorsTierOrderField = exports.ISponsorsListingFeaturedItemFeatureableType = exports.ISponsorsGoalKind = exports.ISponsorsCountryOrRegionCode = exports.ISponsorsActivityPeriod = exports.ISponsorsActivityOrderField = exports.ISponsorsActivityAction = exports.ISponsorableOrderField = exports.ISponsorOrderField = exports.ISecurityVulnerabilityOrderField = exports.ISecurityAdvisorySeverity = exports.ISecurityAdvisoryOrderField = exports.ISecurityAdvisoryIdentifierType = exports.ISecurityAdvisoryEcosystem = exports.ISecurityAdvisoryClassification = exports.ISearchType = exports.ISavedReplyOrderField = exports.ISamlSignatureAlgorithm = exports.ISamlDigestAlgorithm = void 0;
-exports.getSdk = exports.WhoAmIDocument = exports.OrgReposAgExtended_V3Document = exports.OrgReposAg_V2Document = exports.MyUserFieldsFragmentDoc = void 0;
+exports.IProjectCardState = exports.IProjectCardArchivedState = exports.IPinnedDiscussionPattern = exports.IPinnedDiscussionGradient = exports.IPinnableItemType = exports.IPatchStatus = exports.IPackageVersionOrderField = exports.IPackageType = exports.IPackageOrderField = exports.IPackageFileOrderField = exports.IOrganizationOrderField = exports.IOrganizationMigrationState = exports.IOrganizationMembersCanCreateRepositoriesSettingValue = exports.IOrganizationMemberRole = exports.IOrganizationInvitationType = exports.IOrganizationInvitationSource = exports.IOrganizationInvitationRole = exports.IOrgUpdateMemberRepositoryCreationPermissionAuditEntryVisibility = exports.IOrgUpdateMemberAuditEntryPermission = exports.IOrgUpdateDefaultRepositoryPermissionAuditEntryPermission = exports.IOrgRemoveOutsideCollaboratorAuditEntryReason = exports.IOrgRemoveOutsideCollaboratorAuditEntryMembershipType = exports.IOrgRemoveMemberAuditEntryReason = exports.IOrgRemoveMemberAuditEntryMembershipType = exports.IOrgRemoveBillingManagerAuditEntryReason = exports.IOrgEnterpriseOwnerOrderField = exports.IOrgCreateAuditEntryBillingPlan = exports.IOrgAddMemberAuditEntryPermission = exports.IOrderDirection = exports.IOperationType = exports.IOauthApplicationCreateAuditEntryState = exports.IOidcProviderType = exports.INotificationRestrictionSettingValue = exports.IMilestoneState = exports.IMilestoneOrderField = exports.IMigrationState = exports.IMigrationSourceType = exports.IMergeableState = exports.IMergeStateStatus = exports.IMergeCommitTitle = exports.IMergeCommitMessage = exports.IMannequinOrderField = exports.ILockReason = exports.ILanguageOrderField = exports.ILabelOrderField = exports.IIssueTimelineItemsItemType = exports.IIssueStateReason = exports.IIssueState = exports.IIssueOrderField = exports.IIssueCommentOrderField = void 0;
+exports.IRequestableCheckStatusState = exports.IRepositoryVulnerabilityAlertState = exports.IRepositoryVulnerabilityAlertDependencyScope = exports.IRepositoryVisibility = exports.IRepositoryPrivacy = exports.IRepositoryPermission = exports.IRepositoryOrderField = exports.IRepositoryMigrationOrderField = exports.IRepositoryMigrationOrderDirection = exports.IRepositoryLockReason = exports.IRepositoryInvitationOrderField = exports.IRepositoryInteractionLimitOrigin = exports.IRepositoryInteractionLimitExpiry = exports.IRepositoryInteractionLimit = exports.IRepositoryContributionType = exports.IRepositoryAffiliation = exports.IReportedContentClassifiers = exports.IRepoRemoveMemberAuditEntryVisibility = exports.IRepoDestroyAuditEntryVisibility = exports.IRepoCreateAuditEntryVisibility = exports.IRepoChangeMergeSettingAuditEntryMergeType = exports.IRepoArchivedAuditEntryVisibility = exports.IRepoAddMemberAuditEntryVisibility = exports.IRepoAccessAuditEntryVisibility = exports.IReleaseOrderField = exports.IRefOrderField = exports.IReactionOrderField = exports.IReactionContent = exports.IPullRequestUpdateState = exports.IPullRequestTimelineItemsItemType = exports.IPullRequestState = exports.IPullRequestReviewState = exports.IPullRequestReviewEvent = exports.IPullRequestReviewDecision = exports.IPullRequestReviewCommentState = exports.IPullRequestOrderField = exports.IPullRequestMergeMethod = exports.IProjectV2ViewOrderField = exports.IProjectV2ViewLayout = exports.IProjectV2State = exports.IProjectV2OrderField = exports.IProjectV2ItemType = exports.IProjectV2ItemOrderField = exports.IProjectV2ItemFieldValueOrderField = exports.IProjectV2FieldType = exports.IProjectV2FieldOrderField = exports.IProjectTemplate = exports.IProjectState = exports.IProjectOrderField = exports.IProjectColumnPurpose = void 0;
+exports.CommitFragmentDoc = exports.StatusFragmentDoc = exports.GitActionFragmentDoc = exports.IssueFragmentDoc = exports.PrFragmentDoc = exports.RepoFragmentDoc = exports.IWorkflowRunOrderField = exports.IVerifiableDomainOrderField = exports.IUserStatusOrderField = exports.IUserBlockDuration = exports.ITrackedIssueStates = exports.ITopicSuggestionDeclineReason = exports.ITeamRole = exports.ITeamReviewAssignmentAlgorithm = exports.ITeamRepositoryOrderField = exports.ITeamPrivacy = exports.ITeamOrderField = exports.ITeamMembershipType = exports.ITeamMemberRole = exports.ITeamMemberOrderField = exports.ITeamDiscussionOrderField = exports.ITeamDiscussionCommentOrderField = exports.ISubscriptionState = exports.IStatusState = exports.IStarOrderField = exports.ISquashMergeCommitTitle = exports.ISquashMergeCommitMessage = exports.ISponsorshipPrivacy = exports.ISponsorshipOrderField = exports.ISponsorshipNewsletterOrderField = exports.ISponsorsTierOrderField = exports.ISponsorsListingFeaturedItemFeatureableType = exports.ISponsorsGoalKind = exports.ISponsorsCountryOrRegionCode = exports.ISponsorsActivityPeriod = exports.ISponsorsActivityOrderField = exports.ISponsorsActivityAction = exports.ISponsorableOrderField = exports.ISponsorOrderField = exports.ISecurityVulnerabilityOrderField = exports.ISecurityAdvisorySeverity = exports.ISecurityAdvisoryOrderField = exports.ISecurityAdvisoryIdentifierType = exports.ISecurityAdvisoryEcosystem = exports.ISecurityAdvisoryClassification = exports.ISearchType = exports.ISavedReplyOrderField = exports.ISamlSignatureAlgorithm = exports.ISamlDigestAlgorithm = exports.IRoleInOrganization = void 0;
+exports.getSdk = exports.WhoAmIDocument = exports.OrgReposAgExtended_V3Document = exports.OrgReposAg_V2Document = exports.MyUserFieldsFragmentDoc = exports.RepoExFragmentDoc = void 0;
 const graphql_tag_1 = __importDefault(__nccwpck_require__(8435));
 /** The actor's type. */
 var IActorType;
@@ -3146,6 +3146,16 @@ var IOrganizationInvitationRole;
     /** The user's previous role will be reinstated. */
     IOrganizationInvitationRole["Reinstate"] = "REINSTATE";
 })(IOrganizationInvitationRole = exports.IOrganizationInvitationRole || (exports.IOrganizationInvitationRole = {}));
+/** The possible organization invitation sources. */
+var IOrganizationInvitationSource;
+(function (IOrganizationInvitationSource) {
+    /** The invitation was created from the web interface or from API */
+    IOrganizationInvitationSource["Member"] = "MEMBER";
+    /** The invitation was created from SCIM */
+    IOrganizationInvitationSource["Scim"] = "SCIM";
+    /** The invitation was sent before this feature was added */
+    IOrganizationInvitationSource["Unknown"] = "UNKNOWN";
+})(IOrganizationInvitationSource = exports.IOrganizationInvitationSource || (exports.IOrganizationInvitationSource = {}));
 /** The possible organization invitation types. */
 var IOrganizationInvitationType;
 (function (IOrganizationInvitationType) {
@@ -4936,9 +4946,7 @@ exports.GitActionFragmentDoc = (0, graphql_tag_1.default) `
 exports.StatusFragmentDoc = (0, graphql_tag_1.default) `
     fragment Status on Status {
   id
-  commit {
-    id
-  }
+  state
 }
     `;
 exports.CommitFragmentDoc = (0, graphql_tag_1.default) `
@@ -4961,7 +4969,34 @@ exports.RepoExFragmentDoc = (0, graphql_tag_1.default) `
   id
   url
   descriptionHTML
+  autoMergeAllowed
+  isArchived
+  isEmpty
+  isPrivate
+  isTemplate
+  isSecurityPolicyEnabled
+  isDisabled
+  hasWikiEnabled
+  createdAt
   updatedAt
+  pushedAt
+  diskUsage
+  licenseInfo {
+    name
+  }
+  primaryLanguage {
+    name
+  }
+  languages(first: 5) {
+    edges {
+      node {
+        name
+      }
+    }
+  }
+  watchers {
+    totalCount
+  }
   stargazers {
     totalCount
   }
@@ -5122,8 +5157,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.reposExQueryGraphQlSDK = exports.reposQueryGraphQlSDK = exports.whoamiQueryGraphQlSDK = exports.isType = void 0;
-const graphql_sdk_1 = __nccwpck_require__(2849);
 const graphql_request_1 = __nccwpck_require__(2476);
+const graphql_sdk_1 = __nccwpck_require__(2849);
 function isType(result, typename) {
     return (result === null || result === void 0 ? void 0 : result.__typename) === typename;
 }
@@ -5162,6 +5197,36 @@ function reposExQueryGraphQlSDK(gitHubGraphQlUrl, pat, variables) {
 }
 exports.reposExQueryGraphQlSDK = reposExQueryGraphQlSDK;
 //# sourceMappingURL=queries.js.map
+
+/***/ }),
+
+/***/ 9317:
+/***/ ((__unused_webpack_module, exports) => {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.languagesRefactor = void 0;
+function languagesRefactor(languages) {
+    var _a;
+    if (languages &&
+        languages !== null &&
+        languages !== undefined &&
+        'edges' in languages &&
+        languages.edges !== null &&
+        (languages === null || languages === void 0 ? void 0 : languages.edges) !== undefined &&
+        (languages === null || languages === void 0 ? void 0 : languages.edges.length) > 0) {
+        return (_a = languages === null || languages === void 0 ? void 0 : languages.edges) === null || _a === void 0 ? void 0 : _a.map((edge) => {
+            if (edge != null && edge !== undefined && 'node' in edge) {
+                return edge === null || edge === void 0 ? void 0 : edge.node.name;
+            }
+            return '';
+        });
+    }
+    return [];
+}
+exports.languagesRefactor = languagesRefactor;
+//# sourceMappingURL=refactor.js.map
 
 /***/ }),
 
@@ -5207,8 +5272,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.repos = void 0;
-const utils_1 = __nccwpck_require__(7173);
 const queries_1 = __nccwpck_require__(9526);
+const utils_1 = __nccwpck_require__(7173);
 function repos({ pat, gitHubGraphQLUrl, orgName, maxItems = 1, maxPageSize = 1, maxDelayForRateLimit = 5000 }) {
     return __awaiter(this, void 0, void 0, function* () {
         if (!pat) {
@@ -5327,8 +5392,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.gitHubGraphQLOrgReposAgExtendedV3 = exports.reposExtended = void 0;
-const utils_1 = __nccwpck_require__(7173);
 const queries_1 = __nccwpck_require__(9526);
+const refactor_1 = __nccwpck_require__(9317);
+const utils_1 = __nccwpck_require__(7173);
 function shouldGetNextPage(currentRowCount, maxRowCount, currentNextPageCursor, nextCursor) {
     if (maxRowCount === -1 || // get all rows
         (nextCursor &&
@@ -5360,6 +5426,7 @@ function reposExtended({ pat, gitHubGraphQLUrl, orgName, maxItems = 1, maxPageSi
         if (!orgName) {
             throw new Error('orgName is required');
         }
+        console.log(`found params`);
         return yield gitHubGraphQLOrgReposAgExtendedV3(pat, gitHubGraphQLUrl, orgName, maxItems, maxPageSize, maxDelayForRateLimit);
     });
 }
@@ -5390,6 +5457,7 @@ rate_limit_ms) {
             pageSize: page_size,
             after: null
         };
+        console.log(`created variables`);
         let hasNextPage = false;
         let currentData = 0;
         let currentPage = 0;
@@ -5400,7 +5468,12 @@ rate_limit_ms) {
             // if (currentData + page_size > max_data) {
             //   variables.pageSize = max_data - currentData
             // }
+            console.log(`requesting data`);
+            console.log(`gitHubGraphQLUrl ${gitHubGraphQLUrl}`);
+            console.log(`pat ${pat}`);
+            console.log(`variables ${JSON.stringify(variables)}`);
             const data = yield (0, queries_1.reposExQueryGraphQlSDK)(gitHubGraphQLUrl, pat, variables);
+            console.log(`data returned`);
             currentPage += 1;
             // Get repos
             if ((_b = (_a = data === null || data === void 0 ? void 0 : data.organization) === null || _a === void 0 ? void 0 : _a.repositories) === null || _b === void 0 ? void 0 : _b.edges) {
@@ -5430,19 +5503,56 @@ rate_limit_ms) {
                 console.log(`edges not returned`);
             }
         } while (hasNextPage);
+        console.log(`paging finished`);
         // reformulate extended properties
         reposList.map((repo) => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4;
             const lastCommitTarget = (_a = repo.lastPushToDefaultBranch) === null || _a === void 0 ? void 0 : _a.target;
-            // @ts-ignore
-            const commit = lastCommitTarget.history.edges[0].node;
+            let commit;
+            if (lastCommitTarget !== null &&
+                lastCommitTarget !== undefined &&
+                'history' in lastCommitTarget) {
+                const history = lastCommitTarget.history;
+                if ((history === null || history === void 0 ? void 0 : history.edges) !== null &&
+                    (history === null || history === void 0 ? void 0 : history.edges) !== undefined &&
+                    (history === null || history === void 0 ? void 0 : history.edges.length) > 0) {
+                    const node = (_b = history === null || history === void 0 ? void 0 : history.edges[0]) === null || _b === void 0 ? void 0 : _b.node;
+                    commit = node;
+                }
+            }
+            // Languages
+            const refactoredLanguages = (repo === null || repo === void 0 ? void 0 : repo.languages)
+                ? (0, refactor_1.languagesRefactor)(repo === null || repo === void 0 ? void 0 : repo.languages)
+                : [];
             // TBD: fix this
             reposRefactored.push({
                 id: repo.id,
                 url: repo.url,
                 descriptionHTML: repo.descriptionHTML,
                 updatedAt: repo.updatedAt,
+                diskUsage: repo.diskUsage,
                 repositoryName: repo.repositoryName,
+                languages: refactoredLanguages,
+                legal: {
+                    license: (_c = repo.licenseInfo) === null || _c === void 0 ? void 0 : _c.name
+                },
+                is: {
+                    isArchived: repo.isArchived,
+                    isEmpty: repo.isEmpty,
+                    isPrivate: repo.isPrivate,
+                    isTemplate: repo.isTemplate,
+                    isSecurityPolicyEnabled: repo.isSecurityPolicyEnabled,
+                    isDisabled: repo.isDisabled
+                },
+                has: {
+                    hasWikiEnabled: repo.hasWikiEnabled
+                },
+                date: {
+                    createdAt: repo.createdAt,
+                    updatedAt: repo.updatedAt,
+                    pushedAt: repo.pushedAt
+                },
+                watchers: repo.watchers,
                 stargazers: repo.stargazers,
                 forks: repo.forks,
                 issues: repo.issues,
@@ -5450,65 +5560,66 @@ rate_limit_ms) {
                 openPrs: repo.openPrs,
                 lastPr: {
                     title: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_b = repo.lastPr.nodes[0]) === null || _b === void 0 ? void 0 : _b.title
+                        ? (_d = repo.lastPr.nodes[0]) === null || _d === void 0 ? void 0 : _d.title
                         : '',
                     isDraft: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_c = repo.lastPr.nodes[0]) === null || _c === void 0 ? void 0 : _c.isDraft
+                        ? (_e = repo.lastPr.nodes[0]) === null || _e === void 0 ? void 0 : _e.isDraft
                         : false,
                     url: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_d = repo.lastPr.nodes[0]) === null || _d === void 0 ? void 0 : _d.url
+                        ? (_f = repo.lastPr.nodes[0]) === null || _f === void 0 ? void 0 : _f.url
                         : '',
                     state: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_e = repo.lastPr.nodes[0]) === null || _e === void 0 ? void 0 : _e.state
+                        ? (_g = repo.lastPr.nodes[0]) === null || _g === void 0 ? void 0 : _g.state
                         : '',
                     number: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_f = repo.lastPr.nodes[0]) === null || _f === void 0 ? void 0 : _f.number
+                        ? (_h = repo.lastPr.nodes[0]) === null || _h === void 0 ? void 0 : _h.number
                         : '',
                     mergedAt: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_g = repo.lastPr.nodes[0]) === null || _g === void 0 ? void 0 : _g.mergedAt
+                        ? (_j = repo.lastPr.nodes[0]) === null || _j === void 0 ? void 0 : _j.mergedAt
                         : '',
                     closedAt: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_h = repo.lastPr.nodes[0]) === null || _h === void 0 ? void 0 : _h.closedAt
+                        ? (_k = repo.lastPr.nodes[0]) === null || _k === void 0 ? void 0 : _k.closedAt
                         : '',
                     createdAt: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_j = repo.lastPr.nodes[0]) === null || _j === void 0 ? void 0 : _j.createdAt
+                        ? (_l = repo.lastPr.nodes[0]) === null || _l === void 0 ? void 0 : _l.createdAt
                         : ''
                 },
                 lastIssue: {
                     id: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_l = (_k = repo.lastIssue.edges[0]) === null || _k === void 0 ? void 0 : _k.node) === null || _l === void 0 ? void 0 : _l.id
+                        ? (_o = (_m = repo.lastIssue.edges[0]) === null || _m === void 0 ? void 0 : _m.node) === null || _o === void 0 ? void 0 : _o.id
                         : '',
                     title: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_o = (_m = repo.lastIssue.edges[0]) === null || _m === void 0 ? void 0 : _m.node) === null || _o === void 0 ? void 0 : _o.title
+                        ? (_q = (_p = repo.lastIssue.edges[0]) === null || _p === void 0 ? void 0 : _p.node) === null || _q === void 0 ? void 0 : _q.title
                         : '',
                     url: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_q = (_p = repo.lastIssue.edges[0]) === null || _p === void 0 ? void 0 : _p.node) === null || _q === void 0 ? void 0 : _q.url
+                        ? (_s = (_r = repo.lastIssue.edges[0]) === null || _r === void 0 ? void 0 : _r.node) === null || _s === void 0 ? void 0 : _s.url
                         : '',
                     number: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_s = (_r = repo.lastIssue.edges[0]) === null || _r === void 0 ? void 0 : _r.node) === null || _s === void 0 ? void 0 : _s.number
+                        ? (_u = (_t = repo.lastIssue.edges[0]) === null || _t === void 0 ? void 0 : _t.node) === null || _u === void 0 ? void 0 : _u.number
                         : '',
                     state: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_u = (_t = repo.lastIssue.edges[0]) === null || _t === void 0 ? void 0 : _t.node) === null || _u === void 0 ? void 0 : _u.state
-                        : '',
-                    createdAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
                         ? (_w = (_v = repo.lastIssue.edges[0]) === null || _v === void 0 ? void 0 : _v.node) === null || _w === void 0 ? void 0 : _w.state
                         : '',
+                    createdAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
+                        ? (_y = (_x = repo.lastIssue.edges[0]) === null || _x === void 0 ? void 0 : _x.node) === null || _y === void 0 ? void 0 : _y.state
+                        : '',
                     closedAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_y = (_x = repo.lastIssue.edges[0]) === null || _x === void 0 ? void 0 : _x.node) === null || _y === void 0 ? void 0 : _y.closedAt
+                        ? (_0 = (_z = repo.lastIssue.edges[0]) === null || _z === void 0 ? void 0 : _z.node) === null || _0 === void 0 ? void 0 : _0.closedAt
                         : '',
                     lastEditedAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_0 = (_z = repo.lastIssue.edges[0]) === null || _z === void 0 ? void 0 : _z.node) === null || _0 === void 0 ? void 0 : _0.lastEditedAt
+                        ? (_2 = (_1 = repo.lastIssue.edges[0]) === null || _1 === void 0 ? void 0 : _1.node) === null || _2 === void 0 ? void 0 : _2.lastEditedAt
                         : ''
                 },
                 lastPushToDefaultBranch: {
-                    name: (_1 = repo.lastPushToDefaultBranch) === null || _1 === void 0 ? void 0 : _1.name,
-                    message: commit.message,
-                    pushedDate: commit.pushedDate,
-                    committedDate: commit.committedDate,
-                    status: commit.status
+                    name: (_3 = repo.lastPushToDefaultBranch) === null || _3 === void 0 ? void 0 : _3.name,
+                    message: commit === null || commit === void 0 ? void 0 : commit.message,
+                    pushedDate: commit === null || commit === void 0 ? void 0 : commit.pushedDate,
+                    committedDate: commit === null || commit === void 0 ? void 0 : commit.committedDate,
+                    status: (_4 = commit === null || commit === void 0 ? void 0 : commit.status) === null || _4 === void 0 ? void 0 : _4.state
                 }
             });
         });
+        console.log(`refactoring finished`);
         return reposRefactored;
     });
 }
