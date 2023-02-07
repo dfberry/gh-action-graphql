@@ -5,7 +5,7 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.15.0","private":false,"description":"TypeScript template action","main":"dist/src/action/main.js","scripts":{"clean":"rm -rf dist && rm -rf package && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:tsc","build:tsc":"tsc","build:format:fix":"prettier --write ./src","package":"ncc build -o package --no-cache --source-map --license licenses.txt","package2":"NODE_OPTIONS=\'--openssl-legacy-provider\' ncc build -o package --no-cache --source-map --license licenses.txt","test":"jest --detectOpenHandles","all":"npm run clean && npm run build && npm run test && npm run package2"},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["actions","graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@actions/core":"^1.10.0","@actions/github":"^5.1.1","@diberry/github-magic":"^2.1.0","dotenv":"^16.0.3"},"devDependencies":{"@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","jest":"^27.5.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","typescript":"^4.9.3"}}');
+module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.15.1","private":false,"description":"TypeScript template action","main":"dist/src/action/main.js","scripts":{"clean":"rm -rf dist && rm -rf package && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:tsc","build:tsc":"tsc","build:format:fix":"prettier --write ./src","package":"ncc build -o package --no-cache --source-map --license licenses.txt","package2":"NODE_OPTIONS=\'--openssl-legacy-provider\' ncc build -o package --no-cache --source-map --license licenses.txt","test":"jest --detectOpenHandles","all":"npm run clean && npm run build && npm run test && npm run package2"},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["actions","graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@actions/core":"^1.10.0","@actions/github":"^5.1.1","@diberry/github-magic":"^2.1.1","dotenv":"^16.0.3"},"devDependencies":{"@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","jest":"^27.5.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","typescript":"^4.9.3"}}');
 
 /***/ }),
 
@@ -13,7 +13,7 @@ module.exports = JSON.parse('{"name":"gh-action-graphql","version":"1.15.0","pri
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"name":"@diberry/github-magic","version":"2.1.0","private":false,"description":"TypeScript template action","main":"dist/src/sdk/main.js","files":["dist"],"scripts":{"clean":"rm -rf dist && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:sdk && npm run build:lint  && npm run build:tsc","build:tsc":"tsc","build:sdk":"npm run codegen","build:format:fix":"prettier --write ./src","build:lint":"eslint src/**/*.ts","test":"jest --detectOpenHandles","test:all":"npm run build && npm run test","all":"npm run clean && npm run build && npm test","codegen":"graphql-codegen --config codegen.yml","run:all":"node ./dist/src/sdk/runall.js","mgr:publish":"npm publish","mgr:unpublish":"npm unpublish @dfberry/github-magic@1.14.5","mgr:deprecate":"npm deprecate @dfberry/github-magic@1.14.5 \\"Use the latest version\\""},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@graphql-codegen/add":"^3.2.1","@graphql-codegen/typescript-graphql-request":"^4.5.8","@graphql-codegen/typescript-operations":"^2.5.8","axios":"^1.2.0","dotenv":"^16.0.3","graphql":"^16.6.0","graphql-request":"^5.0.0","isomorphic-fetch":"^3.0.0"},"devDependencies":{"@graphql-codegen/cli":"^2.15.0","@graphql-codegen/introspection":"^2.2.1","@graphql-codegen/typescript":"^2.8.3","@graphql-codegen/typescript-resolvers":"^2.7.8","@types/isomorphic-fetch":"^0.0.36","@types/jest":"^29.4.0","@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","eslint":"^8.32.0","eslint-plugin-github":"^4.6.0","eslint-plugin-jest":"^27.2.1","fetch-mock":"^9.11.0","fetch-mock-jest":"^1.5.1","jest":"^29.4.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","prettier":"2.5.1","ts-jest":"^29.0.5","ts-node":"^10.9.1","typescript":"^4.9.3"}}');
+module.exports = JSON.parse('{"name":"@diberry/github-magic","version":"2.1.0","private":false,"description":"TypeScript template action","main":"dist/src/sdk/main.js","files":["dist"],"scripts":{"clean":"rm -rf dist && rm -rf ./src/generated","build":"npm run build:format:fix && npm run build:sdk && npm run build:lint  && npm run build:tsc","build:tsc":"tsc","build:sdk":"npm run codegen","build:format:fix":"prettier --write ./src","build:lint":"eslint src/**/*.ts","test":"jest --detectOpenHandles","test:all":"npm run build && npm run test","all":"npm run clean && npm run build && npm test","codegen":"graphql-codegen --config codegen.yml","run:all":"node ./dist/src/sdk/runall.js","mgr:publish":"npm publish","mgr:unpublish":"npm unpublish @dfberry/github-magic@1.14.5","mgr:deprecate":"npm deprecate @dfberry/github-magic@1.14.5 \\"Use the latest version\\""},"repository":{"type":"git","url":"git+https://github.com/diberry/typescript-action.git"},"keywords":["graphql","github","repository","node","setup"],"author":"","license":"MIT","dependencies":{"@graphql-codegen/add":"^3.2.1","@graphql-codegen/typescript-graphql-request":"^4.5.8","@graphql-codegen/typescript-operations":"^2.5.8","axios":"^1.2.0","dotenv":"^16.0.3","fast-sort":"^3.2.1","graphql":"^16.6.0","graphql-request":"^5.0.0","isomorphic-fetch":"^3.0.0"},"devDependencies":{"@graphql-codegen/cli":"^2.15.0","@graphql-codegen/introspection":"^2.2.1","@graphql-codegen/typescript":"^2.8.3","@graphql-codegen/typescript-resolvers":"^2.7.8","@types/isomorphic-fetch":"^0.0.36","@types/jest":"^29.4.0","@types/node":"^18.11.0","@vercel/ncc":"^0.31.1","eslint":"^8.32.0","eslint-plugin-github":"^4.6.0","eslint-plugin-jest":"^27.2.1","fetch-mock":"^9.11.0","fetch-mock-jest":"^1.5.1","jest":"^29.4.1","jest-mock-extended":"^3.0.1","js-yaml":"^4.1.0","prettier":"2.5.1","ts-jest":"^29.0.5","ts-node":"^10.9.1","typescript":"^4.9.3"}}');
 
 /***/ }),
 
@@ -5201,13 +5201,14 @@ exports.reposExQueryGraphQlSDK = reposExQueryGraphQlSDK;
 /***/ }),
 
 /***/ 9317:
-/***/ ((__unused_webpack_module, exports) => {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.languagesRefactor = void 0;
-function languagesRefactor(languages) {
+const fast_sort_1 = __nccwpck_require__(7089);
+function languagesRefactor(languages, primaryLanguage) {
     var _a;
     if (languages &&
         languages !== null &&
@@ -5216,12 +5217,25 @@ function languagesRefactor(languages) {
         languages.edges !== null &&
         (languages === null || languages === void 0 ? void 0 : languages.edges) !== undefined &&
         (languages === null || languages === void 0 ? void 0 : languages.edges.length) > 0) {
-        return (_a = languages === null || languages === void 0 ? void 0 : languages.edges) === null || _a === void 0 ? void 0 : _a.map((edge) => {
+        const arr = (_a = languages === null || languages === void 0 ? void 0 : languages.edges) === null || _a === void 0 ? void 0 : _a.map((edge) => {
+            // If edge has nodes
             if (edge != null && edge !== undefined && 'node' in edge) {
-                return edge === null || edge === void 0 ? void 0 : edge.node.name;
+                // if edge's node is the primary language
+                return (edge === null || edge === void 0 ? void 0 : edge.node.name) === primaryLanguage
+                    ? `${edge === null || edge === void 0 ? void 0 : edge.node.name} (Primary)`
+                    : edge === null || edge === void 0 ? void 0 : edge.node.name;
             }
-            return '';
+            else {
+                return '';
+            }
         });
+        // If Primary language isn't in array, add it
+        if (arr.includes(`${primaryLanguage} (Primary)`) === false) {
+            arr.push(`${primaryLanguage} (Primary)`);
+        }
+        const sorted = (0, fast_sort_1.inPlaceSort)(arr).asc();
+        console.log(sorted);
+        return sorted;
     }
     return [];
 }
@@ -5506,7 +5520,7 @@ rate_limit_ms) {
         console.log(`paging finished`);
         // reformulate extended properties
         reposList.map((repo) => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4;
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _0, _1, _2, _3, _4, _5, _6;
             const lastCommitTarget = (_a = repo.lastPushToDefaultBranch) === null || _a === void 0 ? void 0 : _a.target;
             let commit;
             if (lastCommitTarget !== null &&
@@ -5522,7 +5536,7 @@ rate_limit_ms) {
             }
             // Languages
             const refactoredLanguages = (repo === null || repo === void 0 ? void 0 : repo.languages)
-                ? (0, refactor_1.languagesRefactor)(repo === null || repo === void 0 ? void 0 : repo.languages)
+                ? (0, refactor_1.languagesRefactor)(repo === null || repo === void 0 ? void 0 : repo.languages, (_c = repo === null || repo === void 0 ? void 0 : repo.primaryLanguage) === null || _c === void 0 ? void 0 : _c.name)
                 : [];
             // TBD: fix this
             reposRefactored.push({
@@ -5532,9 +5546,10 @@ rate_limit_ms) {
                 updatedAt: repo.updatedAt,
                 diskUsage: repo.diskUsage,
                 repositoryName: repo.repositoryName,
+                primaryLanguage: (_d = repo.primaryLanguage) === null || _d === void 0 ? void 0 : _d.name,
                 languages: refactoredLanguages,
                 legal: {
-                    license: (_c = repo.licenseInfo) === null || _c === void 0 ? void 0 : _c.name
+                    license: (_e = repo.licenseInfo) === null || _e === void 0 ? void 0 : _e.name
                 },
                 is: {
                     isArchived: repo.isArchived,
@@ -5560,62 +5575,62 @@ rate_limit_ms) {
                 openPrs: repo.openPrs,
                 lastPr: {
                     title: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_d = repo.lastPr.nodes[0]) === null || _d === void 0 ? void 0 : _d.title
+                        ? (_f = repo.lastPr.nodes[0]) === null || _f === void 0 ? void 0 : _f.title
                         : '',
                     isDraft: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_e = repo.lastPr.nodes[0]) === null || _e === void 0 ? void 0 : _e.isDraft
+                        ? (_g = repo.lastPr.nodes[0]) === null || _g === void 0 ? void 0 : _g.isDraft
                         : false,
                     url: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_f = repo.lastPr.nodes[0]) === null || _f === void 0 ? void 0 : _f.url
+                        ? (_h = repo.lastPr.nodes[0]) === null || _h === void 0 ? void 0 : _h.url
                         : '',
                     state: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_g = repo.lastPr.nodes[0]) === null || _g === void 0 ? void 0 : _g.state
+                        ? (_j = repo.lastPr.nodes[0]) === null || _j === void 0 ? void 0 : _j.state
                         : '',
                     number: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_h = repo.lastPr.nodes[0]) === null || _h === void 0 ? void 0 : _h.number
+                        ? (_k = repo.lastPr.nodes[0]) === null || _k === void 0 ? void 0 : _k.number
                         : '',
                     mergedAt: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_j = repo.lastPr.nodes[0]) === null || _j === void 0 ? void 0 : _j.mergedAt
+                        ? (_l = repo.lastPr.nodes[0]) === null || _l === void 0 ? void 0 : _l.mergedAt
                         : '',
                     closedAt: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_k = repo.lastPr.nodes[0]) === null || _k === void 0 ? void 0 : _k.closedAt
+                        ? (_m = repo.lastPr.nodes[0]) === null || _m === void 0 ? void 0 : _m.closedAt
                         : '',
                     createdAt: repo.lastPr.nodes && repo.lastPr.nodes.length > 0
-                        ? (_l = repo.lastPr.nodes[0]) === null || _l === void 0 ? void 0 : _l.createdAt
+                        ? (_o = repo.lastPr.nodes[0]) === null || _o === void 0 ? void 0 : _o.createdAt
                         : ''
                 },
                 lastIssue: {
                     id: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_o = (_m = repo.lastIssue.edges[0]) === null || _m === void 0 ? void 0 : _m.node) === null || _o === void 0 ? void 0 : _o.id
+                        ? (_q = (_p = repo.lastIssue.edges[0]) === null || _p === void 0 ? void 0 : _p.node) === null || _q === void 0 ? void 0 : _q.id
                         : '',
                     title: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_q = (_p = repo.lastIssue.edges[0]) === null || _p === void 0 ? void 0 : _p.node) === null || _q === void 0 ? void 0 : _q.title
+                        ? (_s = (_r = repo.lastIssue.edges[0]) === null || _r === void 0 ? void 0 : _r.node) === null || _s === void 0 ? void 0 : _s.title
                         : '',
                     url: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_s = (_r = repo.lastIssue.edges[0]) === null || _r === void 0 ? void 0 : _r.node) === null || _s === void 0 ? void 0 : _s.url
+                        ? (_u = (_t = repo.lastIssue.edges[0]) === null || _t === void 0 ? void 0 : _t.node) === null || _u === void 0 ? void 0 : _u.url
                         : '',
                     number: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_u = (_t = repo.lastIssue.edges[0]) === null || _t === void 0 ? void 0 : _t.node) === null || _u === void 0 ? void 0 : _u.number
+                        ? (_w = (_v = repo.lastIssue.edges[0]) === null || _v === void 0 ? void 0 : _v.node) === null || _w === void 0 ? void 0 : _w.number
                         : '',
                     state: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_w = (_v = repo.lastIssue.edges[0]) === null || _v === void 0 ? void 0 : _v.node) === null || _w === void 0 ? void 0 : _w.state
-                        : '',
-                    createdAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
                         ? (_y = (_x = repo.lastIssue.edges[0]) === null || _x === void 0 ? void 0 : _x.node) === null || _y === void 0 ? void 0 : _y.state
                         : '',
+                    createdAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
+                        ? (_0 = (_z = repo.lastIssue.edges[0]) === null || _z === void 0 ? void 0 : _z.node) === null || _0 === void 0 ? void 0 : _0.state
+                        : '',
                     closedAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_0 = (_z = repo.lastIssue.edges[0]) === null || _z === void 0 ? void 0 : _z.node) === null || _0 === void 0 ? void 0 : _0.closedAt
+                        ? (_2 = (_1 = repo.lastIssue.edges[0]) === null || _1 === void 0 ? void 0 : _1.node) === null || _2 === void 0 ? void 0 : _2.closedAt
                         : '',
                     lastEditedAt: repo.lastIssue.edges && repo.lastIssue.edges.length > 0
-                        ? (_2 = (_1 = repo.lastIssue.edges[0]) === null || _1 === void 0 ? void 0 : _1.node) === null || _2 === void 0 ? void 0 : _2.lastEditedAt
+                        ? (_4 = (_3 = repo.lastIssue.edges[0]) === null || _3 === void 0 ? void 0 : _3.node) === null || _4 === void 0 ? void 0 : _4.lastEditedAt
                         : ''
                 },
                 lastPushToDefaultBranch: {
-                    name: (_3 = repo.lastPushToDefaultBranch) === null || _3 === void 0 ? void 0 : _3.name,
+                    name: (_5 = repo.lastPushToDefaultBranch) === null || _5 === void 0 ? void 0 : _5.name,
                     message: commit === null || commit === void 0 ? void 0 : commit.message,
                     pushedDate: commit === null || commit === void 0 ? void 0 : commit.pushedDate,
                     committedDate: commit === null || commit === void 0 ? void 0 : commit.committedDate,
-                    status: (_4 = commit === null || commit === void 0 ? void 0 : commit.status) === null || _4 === void 0 ? void 0 : _4.state
+                    status: (_6 = commit === null || commit === void 0 ? void 0 : commit.status) === null || _6 === void 0 ? void 0 : _6.state
                 }
             });
         });
@@ -10418,6 +10433,14 @@ module.exports = function isExtractableFile(value) {
     value instanceof ReactNativeFile
   );
 };
+
+
+/***/ }),
+
+/***/ 7089:
+/***/ (function(__unused_webpack_module, exports) {
+
+!function(r,n){ true?n(exports):0}(this,function(r){"use strict";function u(t){return function(r,n,e){return t(r,n,e)*e}}var c=function(r,n){if(r)throw Error("Invalid sort config: "+n)},d=function(r){var n=r||{},e=n.asc,t=n.desc,o=e?1:-1,i=e||t;return c(!i,"Expected `asc` or `desc` property"),c(e&&t,"Ambiguous object with `asc` and `desc` config properties"),{order:o,sortBy:i,comparer:r.comparer&&u(r.comparer)}},f=function(p){return function r(n,e,t,o,i,u,c){var f,a;if("string"==typeof n)f=u[n],a=c[n];else{if("function"!=typeof n){var s=d(n);return r(s.sortBy,e,t,s.order,s.comparer||p,u,c)}f=n(u),a=n(c)}var l=i(f,a,o);return(0===l||null==f&&null==a)&&e.length>t?r(e[t],e,t+1,o,i,u,c):l}};function o(r,n,e,t){return Array.isArray(n)?(Array.isArray(e)&&e.length<2&&(e=e[0]),n.sort(function r(e,t,o){if(void 0===e||!0===e)return function(r,n){return t(r,n,o)};if("string"==typeof e)return c(e.includes("."),"String syntax not allowed for nested properties."),function(r,n){return t(r[e],n[e],o)};if("function"==typeof e)return function(r,n){return t(e(r),e(n),o)};if(Array.isArray(e)){var i=f(t);return function(r,n){return i(e[0],e,1,o,t,r,n)}}var n=d(e);return r(n.sortBy,n.comparer||t,n.order)}(e,t,r))):n}function n(e){var t=u(e.comparer);return function(r){var n=Array.isArray(r)&&!e.inPlaceSorting?r.slice():r;return{asc:function(r){return o(1,n,r,t)},desc:function(r){return o(-1,n,r,t)},by:function(r){return o(1,n,r,t)}}}}function e(r,n,e){return null==r?e:null==n?-e:r<n?-1:n<r?1:0}var t=n({comparer:e}),i=n({comparer:e,inPlaceSorting:!0});r.createNewSortInstance=n,r.defaultComparer=e,r.inPlaceSort=i,r.sort=t,Object.defineProperty(r,"__esModule",{value:!0})});
 
 
 /***/ }),

@@ -1,3 +1,7 @@
+# 1.15.1
+
+* update @diberry/github-magic@2.1.1
+
 # 1.15.0
 
 * update @diberry/github-magic@2.1.0 - more extended properties
