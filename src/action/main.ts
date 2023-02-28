@@ -165,6 +165,10 @@ async function run(): Promise<unknown> {
         }
         break
       case 'user_repos_extended':
+
+        // since the query is about a user
+        // assume orgName is a user
+
         console.log(`querytype=user_repos_extended`)
         if (!envVars.pat) {
           throw new Error('pat is required')
@@ -178,7 +182,7 @@ async function run(): Promise<unknown> {
         data = await processActionUserReposEx({
           pat: envVars.pat,
           gitHubGraphQLUrl: envVars.gitHubGraphQLUrl,
-          orgName: envVars.orgName,
+          orgName: envVars.orgName, // user account
           maxItems: envVars.maxItems,
           maxPageSize: envVars.maxPageSize,
           maxDelayForRateLimit: envVars.maxDelayForRateLimit

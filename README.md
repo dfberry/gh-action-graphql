@@ -139,7 +139,7 @@ jobs:
         uses: dfberry/gh-action-graphql@v1.16.1
         with:
           github_personal_access_token: ${{ secrets.PAT }}
-          query_type: 'org_repos'
+          query_type: 'user_repos_extended'
           repoOwnerType: 'user'
           save_to_file: 'true'
           save_to_file_name: user_repos.json 

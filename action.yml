@@ -8,11 +8,15 @@ inputs:
     default: 'default value if applicable'
   query_type: 
     required: false
-    description: 'name of graphql query such as `whoami` or `org-repos`'
+    description: 'name of graphql query such as `whoami` or `org-repos-extended` or `user_repos_extended`'
     default: 'whoami'
+  repoOwnerType: 
+    required: false
+    description: '`organization` or `user`'
+    default: 'organization'
   github_org: 
     required: false
-    description: 'input GitHub org - PAT must have permission to org'
+    description: 'input GitHub org - PAT must have permission to org. If user, then must be user account.'
     default: 'Azure-Samples'
   save_to_file: 
     required: false

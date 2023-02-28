@@ -1,3 +1,7 @@
+# 1.16.1
+
+* Bug fix updating action.yml
+
 # 1.16.0
 
 * `repoOwnerType` param: 
