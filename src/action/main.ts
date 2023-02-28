@@ -10,16 +10,13 @@ import {
 } from './utils/constants'
 import { version } from '../../package.json'
 import {
+  processActionUserReposEx,
   processActionReposEx,
   processActionStatus,
   processActionWhoAmI,
   processActionRepos
 } from '../action/processor'
-
-// import dotenv from 'dotenv'
-// dotenv.config()
-
-type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended' | 'status'
+import { QueryType } from './types'
 
 type IncomingVariables = {
   gitHubGraphQLUrl: string
@@ -39,6 +36,7 @@ function getQueryType(str: string): QueryType {
     case 'whoami':
     case 'org_repos':
     case 'org_repos_extended':
+    case 'user_repos_extended':
       return str
     default:
       return 'org_repos'
@@ -153,6 +151,31 @@ async function run(): Promise<unknown> {
           throw new Error('gitHubGraphQLUrl is required')
         }
         data = await processActionReposEx({
+          pat: envVars.pat,
+          gitHubGraphQLUrl: envVars.gitHubGraphQLUrl,
+          orgName: envVars.orgName,
+          maxItems: envVars.maxItems,
+          maxPageSize: envVars.maxPageSize,
+          maxDelayForRateLimit: envVars.maxDelayForRateLimit
+        })
+
+        // output either data to file or environment
+        if (envVars.save_to_file === 'false') {
+          core.setOutput('data', JSON.stringify(data))
+        }
+        break
+      case 'user_repos_extended':
+        console.log(`querytype=user_repos_extended`)
+        if (!envVars.pat) {
+          throw new Error('pat is required')
+        }
+        if (!envVars.orgName) {
+          throw new Error('User name is required, as `org`')
+        }
+        if (!envVars.gitHubGraphQLUrl) {
+          throw new Error('gitHubGraphQLUrl is required')
+        }
+        data = await processActionUserReposEx({
           pat: envVars.pat,
           gitHubGraphQLUrl: envVars.gitHubGraphQLUrl,
           orgName: envVars.orgName,

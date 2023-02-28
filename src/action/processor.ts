@@ -85,3 +85,27 @@ export async function processActionReposEx({
   })
   return rawResult
 }
+export async function processActionUserReposEx({
+  pat,
+  gitHubGraphQLUrl,
+  orgName,
+  maxItems,
+  maxPageSize,
+  maxDelayForRateLimit
+}: ParametersRepo): Promise<unknown> {
+  console.log(`user reposExtended begin`)
+  if (!pat) throw Error('pat is missing')
+  if (!gitHubGraphQLUrl) throw Error('gitHubGraphQLUrl is missing')
+  if (!orgName) throw Error('orgname is missing')
+
+  const rawResult = await reposExtended({
+    pat,
+    gitHubGraphQLUrl,
+    orgName,
+    maxItems,
+    maxPageSize,
+    maxDelayForRateLimit,
+    repoOwnerType: 'user'
+  })
+  return rawResult
+}

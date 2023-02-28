@@ -1,3 +1,10 @@
+# 1.16.0
+
+* `repoOwnerType` param: 
+    * `user` or `organization`
+    * default is `organization`
+* update @diberry/github-magic@2.3.1
+
 # 1.15.1
 
 * update @diberry/github-magic@2.1.1

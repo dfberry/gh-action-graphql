@@ -19,6 +19,10 @@ Query selected to run. Default is `whoami`. Other options include:
 
 The name of the org used by `github_org` query. Default is `Azure-Samples`.
 
+### `repoOwnerType`
+
+Default is `organization`. Other value is `user`. Gets repos based on type. Added in 1.16.0
+
 ### `save_to_file` 
 
 Save output to file instead of output data to save runtime memory. Default is true.
@@ -46,7 +50,7 @@ If paging, use rate limit to stay within rate limits. Time in milliseconds. Defa
 
 ### `data`
 
-Query or mutuation information is returned in the `data` output.
+Query or mutation information is returned in the `data` output.
 
 ## Example usage - who am i
 
@@ -111,3 +115,53 @@ jobs:
           name: graphql_data.json
           path: ./
 ```
+
+## Example usage - get users repos and save to Azure Blob Storage
+
+```yaml
+name: GraphQL - repos
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  graphql:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    name: GraphQL data scrape repos
+    outputs:
+      output1: ${{ steps.repos.outputs.data }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3    
+      - name: Get data
+        id: repos
+        uses: dfberry/gh-action-graphql@v1.16.1
+        with:
+          github_personal_access_token: ${{ secrets.PAT }}
+          query_type: 'org_repos'
+          repoOwnerType: 'user'
+          save_to_file: 'true'
+          save_to_file_name: user_repos.json 
+          rate_limit_delay: 2000
+          max_page_size: 30         
+      - name: List files
+        id: list_files
+        run: |
+            pwd && ls -la 
+      - name: Upload action's file to Azure Storage
+        uses: fixpoint/azblob-upload-artifact@v4
+        with:
+          connection-string: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
+          path: ./
+          name: user_repos.json
+      - name: Example 2: Upload actions file to repo artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: user_repos.json
+          path: ./
+```
+
+## Troubleshooting
+
+* Most common cause of query is timeout due to data request. Reduce `max_page_size`. 

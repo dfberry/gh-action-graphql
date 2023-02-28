@@ -22,4 +22,9 @@ export type ProcessorParameters = {
   save_to_file_name?: string
 } & IRepoParameters
 
-export type QueryType = 'whoami' | 'org_repos' | 'org_repos_extended' | 'status'
+export type QueryType =
+  | 'whoami'
+  | 'org_repos'
+  | 'org_repos_extended'
+  | 'status'
+  | 'user_repos_extended'
