@@ -1,4 +1,4 @@
-# 1.16.1
+# 1.16.2
 
 * Bug fix updating action.yml
 
